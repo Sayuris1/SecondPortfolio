@@ -55,6 +55,7 @@
         "redefined-local"
     ],
     "Lua.workspace.library": [
-        "~\\AppData\\Roaming\\Code\\User\\globalStorage\\astronachos.defold"
+        "~\\AppData\\Roaming\\Code\\User\\globalStorage\\astronachos.defold",
+        "~\\AppData\\Roaming\\Code\\User\\workspaceStorage\\39923cc8ff9aa482281e74132b488f67\\astronachos.defold"
     ]
 }

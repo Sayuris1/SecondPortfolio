@@ -1,5 +1,6 @@
 [bootstrap]
 main_collection = /main/main.collectionc
+render = /rendy/rendy.renderc
 
 [script]
 shared_state = 1
@@ -17,4 +18,5 @@ scale_mode = stretch
 
 [project]
 title = SecondPortfolio
+dependencies#0 = https://github.com/klaytonkowalski/library-defold-rendy/archive/main.zip
 
