@@ -1,0 +1,10 @@
+name: "main"
+scale_along_z: 0
+embedded_instances {
+  id: "debugger"
+  data: "components {\n"
+  "  id: \"debugger\"\n"
+  "  component: \"/debugger/debugger.script\"\n"
+  "}\n"
+  ""
+}
