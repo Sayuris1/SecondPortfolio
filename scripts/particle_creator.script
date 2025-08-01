@@ -9,16 +9,22 @@ function init(self)
 	msg.post(".", "acquire_input_focus")
 
 	factory_url = "#factory"
+
+	go.property("speed_threshold", 50)
+	self.current_speed_threshold = self.speed_threshold
 end
 
 function on_input(self, action_id, action)
 	if action_id == hash("touch") then
-		if action.pressed then
+		local move_speed = math.abs(action.screen_dx) + math.abs(action.screen_dy)
+		self.current_speed_threshold = self.current_speed_threshold - move_speed
+
+		if self.current_speed_threshold <= 0 then
 			local pos = rendy.screen_to_world(hash("/rendy"), vmath.vector3(action.screen_x, action.screen_y, 15))
 			pos.z = 0
-			pprint(pos)
 
 			create_particle(pos)
+			self.current_speed_threshold = self.speed_threshold
 		end
 	end
 end

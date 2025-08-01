@@ -20,3 +20,9 @@ scale_mode = stretch
 title = SecondPortfolio
 dependencies#0 = https://github.com/klaytonkowalski/library-defold-rendy/archive/main.zip
 
+[physics]
+use_fixed_timestep = 1
+
+[input]
+use_accelerometer = 0
+
