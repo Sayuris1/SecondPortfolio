@@ -18,7 +18,6 @@ function init(self)
 
 	factory_url = msg.url("#factory")
 	base_url = msg.url("/base")
-	pprint(base_url)
 
 	msg.post(".", "acquire_input_focus")
 end
@@ -47,13 +46,15 @@ function update(self, dt)
 	end
 end
 
+local touch = hash("touch")
+local camera_id = hash("/rendy")
 function on_input(self, action_id, action)
-	if action_id == hash("touch") then
+	if action_id == touch then
 		local move_speed = math.abs(action.screen_dx) + math.abs(action.screen_dy)
 		self.current_delta_threshold = self.current_delta_threshold - move_speed
 
 		if self.current_delta_threshold <= 0 then
-			local pos = rendy.screen_to_world(hash("/rendy"), vmath.vector3(action.screen_x, action.screen_y, 15))
+			local pos = rendy.screen_to_world(camera_id, vmath.vector3(action.screen_x, action.screen_y, 15))
 			pos.z = 0
 
 			local dx_sign = utils.sign(action.screen_dx)
@@ -62,5 +63,13 @@ function on_input(self, action_id, action)
 
 			self.current_delta_threshold = self.delta_threshold
 		end
+	end
+end
+
+local delete_particle = hash("delete_particle")
+function on_message(self, message_id, message, sender)
+	if message_id == delete_particle then
+		self.particles[message.particle_id] = nil
+		go.delete(message.particle_id)
 	end
 end

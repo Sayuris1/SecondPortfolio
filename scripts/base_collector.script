@@ -1,0 +1,19 @@
+local trigger_response = hash("trigger_response")
+local delete_particle = hash("delete_particle")
+local particle_crator_url
+
+function init(self)
+	particle_crator_url = msg.url(nil, "/particle_creator", "particle_creator")
+end
+
+local time = 0
+function update(self, dt)
+	go.set("/base#model", "u_time", vmath.vector4(time))
+	time = time + dt
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == trigger_response then
+		msg.post(particle_crator_url, delete_particle, {particle_id = message.other_id})
+	end
+end

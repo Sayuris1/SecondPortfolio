@@ -13,7 +13,17 @@ instances {
       type: PROPERTY_TYPE_BOOLEAN
     }
     properties {
+      id: "resize_mode_center"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
       id: "resize_mode_expand"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "resize_mode_stretch"
       value: "true"
       type: PROPERTY_TYPE_BOOLEAN
     }
@@ -66,23 +76,6 @@ embedded_instances {
   "  component: \"/scripts/base_collector.script\"\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"label\"\n"
-  "  type: \"label\"\n"
-  "  data: \"size {\\n"
-  "  x: 32.0\\n"
-  "  y: 32.0\\n"
-  "}\\n"
-  "text: \\\"0\\\"\\n"
-  "font: \\\"/builtins/fonts/default.font\\\"\\n"
-  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
-  "\"\n"
-  "  scale {\n"
-  "    x: 0.1\n"
-  "    y: 0.1\n"
-  "    z: 0.1\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"type: COLLISION_OBJECT_TYPE_TRIGGER\\n"
@@ -102,15 +95,36 @@ embedded_instances {
   "    count: 1\\n"
   "    id: \\\"shape\\\"\\n"
   "  }\\n"
-  "  data: 1.0\\n"
+  "  data: 0.25\\n"
   "}\\n"
   "locked_rotation: true\\n"
   "event_collision: false\\n"
   "event_contact: false\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/assets/models/sphere/sphere.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/assets/models/sphere/Noise.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
   ""
   position {
-    y: -5.0
+    y: -2.5
+    z: 5.0
+  }
+  scale3 {
+    x: 4.0
+    y: 4.0
+    z: 4.0
   }
 }

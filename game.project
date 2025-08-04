@@ -26,3 +26,6 @@ use_fixed_timestep = 1
 [input]
 use_accelerometer = 0
 
+[render]
+clear_color_red = 1.0
+
