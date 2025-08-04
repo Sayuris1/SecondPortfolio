@@ -1,7 +1,7 @@
-name: "sphere"
+name: "particle"
 tags: "model"
-vertex_program: "/assets/models/sphere/sphere.vp"
-fragment_program: "/assets/models/sphere/sphere.fp"
+vertex_program: "/assets/models/particle/particle.vp"
+fragment_program: "/assets/models/particle/particle.fp"
 vertex_space: VERTEX_SPACE_LOCAL
 vertex_constants {
   name: "mtx_worldview"

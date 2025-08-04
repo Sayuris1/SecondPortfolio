@@ -1,19 +1,4 @@
 embedded_components {
-  id: "model"
-  type: "model"
-  data: "mesh: \"/builtins/assets/meshes/sphere.dae\"\n"
-  "name: \"{{NAME}}\"\n"
-  "materials {\n"
-  "  name: \"default\"\n"
-  "  material: \"/builtins/materials/model.material\"\n"
-  "  textures {\n"
-  "    sampler: \"tex0\"\n"
-  "    texture: \"/builtins/graphics/particle_blob.png\"\n"
-  "  }\n"
-  "}\n"
-  ""
-}
-embedded_components {
   id: "collisionobject"
   type: "collisionobject"
   data: "type: COLLISION_OBJECT_TYPE_TRIGGER\n"
@@ -33,10 +18,21 @@ embedded_components {
   "    count: 1\n"
   "    id: \"sphere\"\n"
   "  }\n"
-  "  data: 1.0\n"
+  "  data: 6.5\n"
   "}\n"
   "bullet: true\n"
   "event_collision: false\n"
   "event_contact: false\n"
+  ""
+}
+embedded_components {
+  id: "sprite"
+  type: "sprite"
+  data: "default_animation: \"anim\"\n"
+  "material: \"/builtins/materials/sprite.material\"\n"
+  "textures {\n"
+  "  sampler: \"texture_sampler\"\n"
+  "  texture: \"/builtins/graphics/particle_blob.tilesource\"\n"
+  "}\n"
   ""
 }
