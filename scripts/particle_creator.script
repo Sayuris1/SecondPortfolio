@@ -6,11 +6,10 @@ local base_url
 local base_model_url
 
 local function create_particle(pos)
-	return factory.create(factory_url, pos)
+	return factory.create(factory_url, pos, nil, nil, vmath.vector3(0.2))
 end
 
 function init(self)
-	go.property("particle_speed", 0.3)
 	go.property("delta_threshold", 50)
 	go.property("spawn_spread_time", 0.2)
 	self.particles = {} -- {id1 = {speed, dspeed} }
@@ -61,7 +60,7 @@ function on_input(self, action_id, action)
 
 			local dx_sign = utils.sign(action.screen_dx)
 			local id =  create_particle(pos)
-			self.particles[id] = {v = vmath.vector3(15 * dx_sign, math.random(-40, 40), 0), a = vmath.vector3(0), t = 0}
+			self.particles[id] = {v = vmath.vector3(5 * dx_sign, math.random(-40, 40), 0), a = vmath.vector3(0), t = 0}
 
 			self.current_delta_threshold = self.delta_threshold
 		end
