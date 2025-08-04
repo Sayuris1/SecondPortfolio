@@ -113,9 +113,10 @@ void main()
     if(d > 0.0){
     	col = color(c);
     	col * d;
+        out_fragColor = vec4(col, 1.0);;
     }else{
         col = vec3(0.0);
+        out_fragColor = vec4(col, 0.0);;
     }
 
-    out_fragColor = vec4(col, 1.0);;
 }
