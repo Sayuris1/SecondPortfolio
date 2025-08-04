@@ -1,19 +1,39 @@
+local tweener = require("tweener.tweener")
+
 local trigger_response = hash("trigger_response")
 local delete_particle = hash("delete_particle")
 local particle_crator_url
+local base_model_url
 
 function init(self)
+	self.wiggle_x = 0
+	self.wiggle_incementor = 0
+
 	particle_crator_url = msg.url(nil, "/particle_creator", "particle_creator")
+	base_model_url = msg.url(nil, "/base", "model")
 end
 
 local time = 0
+local wiggle_tween = 0
 function update(self, dt)
-	go.set("/base#model", "u_time", vmath.vector4(time))
+	go.set(base_model_url, "u_time", vmath.vector4(time, self.wiggle_x, 0, 0))
+
 	time = time + dt
+	if self.wiggle_incementor >= 0 then
+		self.wiggle_x = self.wiggle_x + dt
+		self.wiggle_incementor = self.wiggle_incementor - dt
+		
+		wiggle_tween = 0
+	elseif wiggle_tween <= 0.5 then
+		self.wiggle_x = self.wiggle_x + tweener.ease(tweener.incirc, dt, 0, 0.5, wiggle_tween)
+		wiggle_tween = wiggle_tween + dt
+	end
+
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == trigger_response then
 		msg.post(particle_crator_url, delete_particle, {particle_id = message.other_id})
+		self.wiggle_incementor = 0.3
 	end
 end

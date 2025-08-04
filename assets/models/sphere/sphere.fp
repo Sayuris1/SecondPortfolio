@@ -95,10 +95,10 @@ void main()
    	vec2 uv = var_texcoord0;
     uv = uv * 2.0 - 1.0;
 
-	float text = texture(tex0, var_texcoord0.xy + u_time.yz).x * 2 - 1;
+	float text = texture(tex0, var_texcoord0.xy + u_time.y).x * 2 - 1;
 	float tex = sin(u_time.x * 0.3) * 2 - 1;
 	float tex2 = cos(u_time.x + 0.6 * 0.2) * 2 - 1;
-    camPos = vec3(0.0 , 0.0, -4.0);
+    camPos = vec3(0.0 , 0.0, -6.0);
     lightPos = vec3(tex + text, tex2 + text, -6.0);
 
     vec3 ro = camPos;
@@ -107,16 +107,7 @@ void main()
     float d = trace(ro, rd);
 
     vec3 c = ro + rd * d;
+    vec3 col = color(c);
 
-    vec3 col = vec3(1.0);
-
-    if(d > 0.0){
-    	col = color(c);
-    	col * d;
-        out_fragColor = vec4(col, 1.0);;
-    }else{
-        col = vec3(0.0);
-        out_fragColor = vec4(col, 0.0);;
-    }
-
+    out_fragColor = vec4(col, d);;
 }

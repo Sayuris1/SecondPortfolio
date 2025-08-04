@@ -3,6 +3,7 @@ local utils = require "scripts.utils"
 
 local factory_url
 local base_url
+local base_model_url
 
 local function create_particle(pos)
 	return factory.create(factory_url, pos)
@@ -18,6 +19,7 @@ function init(self)
 
 	factory_url = msg.url("#factory")
 	base_url = msg.url("/base")
+	base_model_url = msg.url(nil, "/base", "model")
 
 	msg.post(".", "acquire_input_focus")
 end

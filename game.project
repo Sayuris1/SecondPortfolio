@@ -19,6 +19,7 @@ scale_mode = stretch
 [project]
 title = SecondPortfolio
 dependencies#0 = https://github.com/klaytonkowalski/library-defold-rendy/archive/main.zip
+dependencies#1 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.zip
 
 [physics]
 use_fixed_timestep = 1

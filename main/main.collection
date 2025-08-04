@@ -39,13 +39,6 @@ instances {
     }
   }
 }
-instances {
-  id: "particle"
-  prototype: "/game_objects/particle.go"
-  position {
-    x: -2.0
-  }
-}
 scale_along_z: 0
 embedded_instances {
   id: "debugger"
@@ -119,7 +112,7 @@ embedded_instances {
   "}\n"
   ""
   position {
-    y: -2.5
+    y: -3.2
     z: 5.0
   }
   scale3 {
