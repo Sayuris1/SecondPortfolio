@@ -8,7 +8,7 @@ embedded_components {
   "  material: \"/builtins/materials/model.material\"\n"
   "  textures {\n"
   "    sampler: \"tex0\"\n"
-  "    texture: \"/builtins/assets/images/logo/logo_blue_1024.png\"\n"
+  "    texture: \"/builtins/graphics/particle_blob.png\"\n"
   "  }\n"
   "}\n"
   ""

@@ -1,30 +1,66 @@
 local rendy = require "rendy.rendy"
+local utils = require "scripts.utils"
 
 local factory_url
+local base_url
+
 local function create_particle(pos)
-	factory.create(factory_url, pos)
+	return factory.create(factory_url, pos)
 end
 
 function init(self)
+	go.property("particle_speed", 0.3)
+	go.property("delta_threshold", 50)
+	go.property("spawn_spread_time", 0.2)
+	self.particles = {} -- {id1 = {speed, dspeed} }
+
+	self.current_delta_threshold = self.delta_threshold
+
+	factory_url = msg.url("#factory")
+	base_url = msg.url("/base")
+	pprint(base_url)
+
 	msg.post(".", "acquire_input_focus")
+end
 
-	factory_url = "#factory"
+function update(self, dt)
+	local base_pos = go.get_position(base_url)
+	for id, values in pairs(self.particles) do
+		local pos = go.get_position(id)
 
-	go.property("speed_threshold", 50)
-	self.current_speed_threshold = self.speed_threshold
+ 		if values.t < self.spawn_spread_time then
+			values.v = vmath.lerp(values.t / self.spawn_spread_time, values.v, vmath.vector3(1, 0, 0))
+
+			local newPos = pos + values.v * dt
+			go.set_position(newPos, id)
+		else
+			values.a = vmath.lerp(0.5, vmath.normalize(base_pos - pos) * 4000 / vmath.length_sqr(base_pos - pos), values.a)
+
+			values.v = values.v + values.a * dt
+
+			local newPos = pos + values.v * dt
+			go.set_position(newPos, id)
+
+		end
+
+		values.t = values.t + dt
+	end
 end
 
 function on_input(self, action_id, action)
 	if action_id == hash("touch") then
 		local move_speed = math.abs(action.screen_dx) + math.abs(action.screen_dy)
-		self.current_speed_threshold = self.current_speed_threshold - move_speed
+		self.current_delta_threshold = self.current_delta_threshold - move_speed
 
-		if self.current_speed_threshold <= 0 then
+		if self.current_delta_threshold <= 0 then
 			local pos = rendy.screen_to_world(hash("/rendy"), vmath.vector3(action.screen_x, action.screen_y, 15))
 			pos.z = 0
 
-			create_particle(pos)
-			self.current_speed_threshold = self.speed_threshold
+			local dx_sign = utils.sign(action.screen_dx)
+			local id =  create_particle(pos)
+			self.particles[id] = {v = vmath.vector3(15 * dx_sign, math.random(-40, 40), 0), a = vmath.vector3(0), t = 0}
+
+			self.current_delta_threshold = self.delta_threshold
 		end
 	end
 end
