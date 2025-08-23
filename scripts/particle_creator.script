@@ -3,7 +3,6 @@ local utils = require "scripts.utils"
 
 local factory_url
 local base_url
-local base_model_url
 
 local function create_particle(pos)
 	return factory.create(factory_url, pos, nil, nil, vmath.vector3(0.01))

@@ -23,10 +23,11 @@ dependencies#1 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.
 
 [physics]
 use_fixed_timestep = 1
+type = 3D
 
 [input]
 use_accelerometer = 0
 
 [render]
-clear_color_red = 1.0
+clear_color_red = 0.0
 

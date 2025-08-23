@@ -1,0 +1,30 @@
+local rendy = require "rendy.rendy"
+
+local touch = hash("touch")
+local camera_id = hash("/rendy")
+local cursor = hash("cursor")
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+end
+
+local RAY_LENGTH = 10000
+function on_input(self, action_id, action)
+	if action_id == touch then
+		local position_start = vmath.vector3(action.screen_x, action.screen_y, RAY_LENGTH/2)
+		local position_end = vmath.vector3(action.screen_x, action.screen_y, -RAY_LENGTH/2)
+		local ray_start = rendy.screen_to_world(camera_id, position_start)
+		local ray_end = rendy.screen_to_world(camera_id, position_end)
+
+		local hit = physics.raycast(ray_start, ray_end, {cursor})
+		if hit then
+			msg.post(hit.id, touch)
+		end
+	end
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end

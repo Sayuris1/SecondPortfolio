@@ -9,6 +9,8 @@ function init(self)
 	self.wiggle_x = 0
 	self.wiggle_incementor = 0
 
+	self.current_particle = 50
+
 	particle_crator_url = msg.url(nil, "/particle_creator", "particle_creator")
 	base_model_url = msg.url(nil, "/base", "model")
 end
@@ -16,7 +18,7 @@ end
 local time = 0
 local wiggle_tween = 0
 function update(self, dt)
-	go.set(base_model_url, "u_time", vmath.vector4(time, self.wiggle_x, 0, 0))
+	go.set(base_model_url, "u_time", vmath.vector4(time, self.wiggle_x, self.current_particle, 0))
 
 	time = time + dt
 	if self.wiggle_incementor >= 0 then
