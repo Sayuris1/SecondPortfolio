@@ -39,9 +39,13 @@ function update(self, dt)
 
 			values.v = values.v + values.a * dt
 
-			local newPos = pos + values.v * dt
-			go.set_position(newPos, id)
+			local delta_pos = values.v * dt
+			if vmath.length_sqr(delta_pos) > 0.1 then
+				delta_pos = vmath.normalize(delta_pos) * 0.1
+			end
 
+			local newPos = pos + delta_pos
+			go.set_position(newPos, id)
 		end
 
 		values.t = values.t + dt
@@ -75,7 +79,6 @@ function on_message(self, message_id, message, sender)
 
 	elseif message_id == delete_particle then
 
-	pprint(message_id)
 		self.particles[message.particle_id] = nil
 		go.delete(message.particle_id)
 	end
