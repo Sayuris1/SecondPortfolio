@@ -7,7 +7,7 @@ function init(self)
 	self.wiggle_x = 0
 	self.wiggle_incementor = 0
 
-	self.current_particle = 50
+	Current_Particle = 0
 
 	particle_creator_url = msg.url(nil, "/particle_creator", "particle_creator")
 	base_model_url = msg.url(nil, "/base", "model")
@@ -16,13 +16,14 @@ end
 local time = 0
 local wiggle_tween = 0
 function update(self, dt)
-	go.set(base_model_url, "u_time", vmath.vector4(time, self.wiggle_x, self.current_particle, 0))
+	local base_size = Current_Particle * 0.003
+	go.set(base_model_url, "u_time", vmath.vector4(time, self.wiggle_x, base_size, 0))
 
 	time = time + dt
 	if self.wiggle_incementor >= 0 then
 		self.wiggle_x = self.wiggle_x + dt
 		self.wiggle_incementor = self.wiggle_incementor - dt
-		
+
 		wiggle_tween = 0
 	elseif wiggle_tween <= 0.5 then
 		self.wiggle_x = self.wiggle_x + tweener.ease(tweener.incirc, dt, 0, 0.5, wiggle_tween)
@@ -33,9 +34,14 @@ end
 
 local trigger_response = hash("trigger_response")
 local delete_particle = hash("delete_particle")
+local create_particle_message = hash("create_particle")
 function on_message(self, message_id, message, sender)
 	if message_id == trigger_response then
 		msg.post(particle_creator_url, delete_particle, {particle_id = message.other_id})
 		self.wiggle_incementor = 0.3
+
+		Current_Particle = math.min(500, Current_Particle + 5)
+	elseif create_particle_message then
+		Current_Particle = math.max(0, Current_Particle - 1)
 	end
 end

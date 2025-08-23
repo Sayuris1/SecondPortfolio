@@ -76,6 +76,7 @@ local create_particle_message = hash("create_particle")
 function on_message(self, message_id, message, sender)
 	if message_id == create_particle_message then
 		create_particle(message.spawn_pos, message.aim_pos, message.left_rigt, factory_pull_url, self.particles)
+		msg.post(base_url, create_particle_message)
 
 	elseif message_id == delete_particle then
 

@@ -12,8 +12,10 @@ local collision_response = hash("collision_response")
 local delete_particle = hash("delete_particle")
 function on_message(self, message_id, message, sender)
 	if message_id == touch then
-		local left_rigt = math.random(1, 2) == 1 and -1 or 1
-		msg.post(particle_creator_url, create_particle, {spawn_pos = go.get_position(base_url), aim_pos = go.get_position(), left_rigt = left_rigt})
+		if Current_Particle > 0 then
+			local left_rigt = math.random(1, 2) == 1 and -1 or 1
+			msg.post(particle_creator_url, create_particle, {spawn_pos = go.get_position(base_url), aim_pos = go.get_position(), left_rigt = left_rigt})
+		end
 
 	elseif message_id == collision_response then
 		msg.post(particle_creator_url, delete_particle, {particle_id = message.other_id})

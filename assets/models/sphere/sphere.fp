@@ -30,11 +30,11 @@ float map(vec3 p){
 	float t3 = cos(u_time.x * 3.4 + u_time.y * 5);
 	float tc = texture(tex0, var_texcoord0.xy + sin(u_time.x * 0.5)).x * 1.3;
 
-    float sphere = length(p + vec3(0.0, -0.5, 0.0) + vec3(t0, t1, 1.0)) - 1.20;
-    float sphere2 = length(p + vec3(t1, t2, 1.0)) - 0.66;
-    float sphere3 = length(p + vec3(t2, t3, 1.0)) - 0.58;
-    float sphere4 = length(p + vec3(tc, t3, 1.0)) - 0.90;
-    float sphere5 = length(p + vec3(t2, tc, 1.0)) - 0.60;
+    float sphere = length(p + vec3(0.0, -0.5, 0.0) + vec3(t0, t1, 1.0)) - 1.20 * u_time.z;
+    float sphere2 = length(p + vec3(t1, t2, 1.0)) - 0.66 * u_time.z;
+    float sphere3 = length(p + vec3(t2, t3, 1.0)) - 0.58 * u_time.z;
+    float sphere4 = length(p + vec3(tc, t3, 1.0)) - 0.90 * u_time.z;
+    float sphere5 = length(p + vec3(t2, tc, 1.0)) - 0.60 * u_time.z;
     
     return smin(sphere, smin(sphere2, smin(sphere3, smin(sphere4, sphere5, 0.2), 0.2), 0.2), 0.2);
 }
