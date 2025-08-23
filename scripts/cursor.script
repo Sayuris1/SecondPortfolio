@@ -2,7 +2,7 @@ local rendy = require "rendy.rendy"
 
 local touch = hash("touch")
 local camera_id = hash("/rendy")
-local cursor = hash("cursor")
+local pull = hash("pull")
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -16,9 +16,9 @@ function on_input(self, action_id, action)
 		local ray_start = rendy.screen_to_world(camera_id, position_start)
 		local ray_end = rendy.screen_to_world(camera_id, position_end)
 
-		local hit = physics.raycast(ray_start, ray_end, {cursor})
+		local hit = physics.raycast(ray_start, ray_end, {pull})
 		if hit then
-			msg.post(hit.id, touch)
+			msg.post(hit.id, touch, {action})
 		end
 	end
 end

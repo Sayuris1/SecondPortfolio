@@ -1,13 +1,16 @@
 local rendy = require "rendy.rendy"
 local utils = require "scripts.utils"
 
-local factory_url
-local base_url
 
-local function create_particle(pos)
-	return factory.create(factory_url, pos, nil, nil, vmath.vector3(0.01))
+local function create_particle(spawn_pos, aim_pos, left_right, factory_url, particle_table)
+	local id = factory.create(factory_url, spawn_pos, nil, nil, vmath.vector3(0.01))
+	particle_table[id] = {v = vmath.vector3(15 * left_right, math.random(-15, 15), 0), a = vmath.vector3(0), t = 0, aim_pos = aim_pos}
 end
 
+
+local base_url
+local factory_base_url
+local factory_pull_url
 function init(self)
 	go.property("delta_threshold", 50)
 	go.property("spawn_spread_time", 0.2)
@@ -15,15 +18,15 @@ function init(self)
 
 	self.current_delta_threshold = self.delta_threshold
 
-	factory_url = msg.url("#factory")
+	factory_base_url = msg.url("#factory_base")
+	factory_pull_url = msg.url("#factory_pull")
+
 	base_url = msg.url("/base")
-	base_model_url = msg.url(nil, "/base", "model")
 
 	msg.post(".", "acquire_input_focus")
 end
 
 function update(self, dt)
-	local base_pos = go.get_position(base_url)
 	for id, values in pairs(self.particles) do
 		local pos = go.get_position(id)
  		if values.t < self.spawn_spread_time then
@@ -32,7 +35,7 @@ function update(self, dt)
 			local newPos = pos + values.v * dt
 			go.set_position(newPos, id)
 		else
-			values.a = vmath.lerp(0.5, vmath.normalize(base_pos - pos) * 4000 / vmath.length_sqr(base_pos - pos), values.a)
+			values.a = vmath.lerp(0.5, vmath.normalize(values.aim_pos - pos) * 4000 / vmath.length_sqr(values.aim_pos - pos), values.a)
 
 			values.v = values.v + values.a * dt
 
@@ -57,8 +60,7 @@ function on_input(self, action_id, action)
 			pos.z = 0
 
 			local dx_sign = utils.sign(action.screen_dx)
-			local id =  create_particle(pos)
-			self.particles[id] = {v = vmath.vector3(15 * dx_sign, math.random(-15, 15), 0), a = vmath.vector3(0), t = 0}
+			create_particle(pos, go.get_position(base_url), dx_sign, factory_base_url, self.particles)
 
 			self.current_delta_threshold = self.delta_threshold
 		end
@@ -66,8 +68,14 @@ function on_input(self, action_id, action)
 end
 
 local delete_particle = hash("delete_particle")
+local create_particle_message = hash("create_particle")
 function on_message(self, message_id, message, sender)
-	if message_id == delete_particle then
+	if message_id == create_particle_message then
+		create_particle(message.spawn_pos, message.aim_pos, message.left_rigt, factory_pull_url, self.particles)
+
+	elseif message_id == delete_particle then
+
+	pprint(message_id)
 		self.particles[message.particle_id] = nil
 		go.delete(message.particle_id)
 	end

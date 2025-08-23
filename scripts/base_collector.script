@@ -1,8 +1,6 @@
 local tweener = require("tweener.tweener")
 
-local trigger_response = hash("trigger_response")
-local delete_particle = hash("delete_particle")
-local particle_crator_url
+local particle_creator_url
 local base_model_url
 
 function init(self)
@@ -11,7 +9,7 @@ function init(self)
 
 	self.current_particle = 50
 
-	particle_crator_url = msg.url(nil, "/particle_creator", "particle_creator")
+	particle_creator_url = msg.url(nil, "/particle_creator", "particle_creator")
 	base_model_url = msg.url(nil, "/base", "model")
 end
 
@@ -33,9 +31,11 @@ function update(self, dt)
 
 end
 
+local trigger_response = hash("trigger_response")
+local delete_particle = hash("delete_particle")
 function on_message(self, message_id, message, sender)
 	if message_id == trigger_response then
-		msg.post(particle_crator_url, delete_particle, {particle_id = message.other_id})
+		msg.post(particle_creator_url, delete_particle, {particle_id = message.other_id})
 		self.wiggle_incementor = 0.3
 	end
 end
