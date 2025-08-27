@@ -1,0 +1,7 @@
+images {
+  image: "/assets/textures/arrow.png"
+}
+images {
+  image: "/assets/textures/arrow_outline.png"
+}
+extrude_borders: 2

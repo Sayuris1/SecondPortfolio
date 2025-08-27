@@ -284,17 +284,6 @@ function update(self, dt)
 		-- Only render this camera if it is active.
 		if camera.active then
 			activate_camera(camera)
-			-- First, render 3D objects.
-			-- Enable depth testing and facing culling to discard non-visible fragments.
-			-- Blending is not supported for 3D objects because Defold does not sort them from back to front, which is a requirement for proper blending.
-			render.enable_state(graphics.STATE_DEPTH_TEST)
-			render.enable_state(graphics.STATE_CULL_FACE)
-			render.enable_state(graphics.STATE_BLEND)
-			render.draw(predicates.model.object, { frustum = camera.frustum })
-			render.disable_state(graphics.STATE_BLEND)
-			render.disable_state(graphics.STATE_CULL_FACE)
-			render.disable_state(graphics.STATE_DEPTH_TEST)
-			render.set_depth_mask(false)
 			-- Second, render 2D objects.
 			-- Disable depth testing because Defold sorts 2D objects by their z positions from back to front.
 			-- Enable blending to support partially transparent objects.
@@ -306,6 +295,18 @@ function update(self, dt)
 			render.enable_state(graphics.STATE_BLEND)
 			render.draw_debug3d()
 			render.disable_state(graphics.STATE_BLEND)
+			-- First, render 3D objects.
+			-- Enable depth testing and facing culling to discard non-visible fragments.
+			-- Blending is not supported for 3D objects because Defold does not sort them from back to front, which is a requirement for proper blending.
+			render.set_depth_mask(true)
+			render.enable_state(graphics.STATE_DEPTH_TEST)
+			render.enable_state(graphics.STATE_CULL_FACE)
+			render.enable_state(graphics.STATE_BLEND)
+			render.draw(predicates.model.object, { frustum = camera.frustum })
+			render.disable_state(graphics.STATE_BLEND)
+			render.disable_state(graphics.STATE_CULL_FACE)
+			render.disable_state(graphics.STATE_DEPTH_TEST)
+			render.set_depth_mask(false)
 		end
 	end
 	-- Render the GUI camera on top of all other cameras.

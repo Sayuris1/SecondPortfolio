@@ -1,12 +1,26 @@
 local particle_creator_url
 local base_url
+local sprite_fill_url
+
 function init(self)
 	particle_creator_url = msg.url("/particle_creator")
 	base_url = msg.url("/base")
+
+	sprite_fill_url = msg.url()
+	sprite_fill_url.fragment = "sprite_fill"
+
+	self.particle_count = 0
+
+	msg.post("#model", "disable")
 end
 
 local touch = hash("touch")
 local create_particle = hash("create_particle")
+local u_fill = hash("u_fill")
+
+function update(self, dt)
+	go.set(sprite_fill_url, u_fill, vmath.vector4(self.particle_count / 1000, os.clock() * 0.1,  0, 0))
+end
 
 local collision_response = hash("collision_response")
 local delete_particle = hash("delete_particle")
@@ -19,6 +33,13 @@ function on_message(self, message_id, message, sender)
 
 	elseif message_id == collision_response then
 		msg.post(particle_creator_url, delete_particle, {particle_id = message.other_id})
-		self.wiggle_incementor = 0.3
+
+		self.particle_count = math.min(1000, self.particle_count + 1)
+		if self.particle_count >= 1000 then
+			
+			msg.post("#model", "enable")
+			msg.post("#sprite_fill", "disable")
+			msg.post("#sprite_outline", "disable")
+		end
 	end
 end
