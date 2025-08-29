@@ -54,6 +54,14 @@ instances {
     z: 10.0
   }
 }
+instances {
+  id: "planet1"
+  prototype: "/game_objects/planet.go"
+  position {
+    x: 4.0
+    z: -10.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "debugger"
@@ -174,6 +182,9 @@ embedded_instances {
   "\"\n"
   "}\n"
   ""
+  position {
+    z: -100.0
+  }
   scale3 {
     x: 10.0
     y: 10.0
