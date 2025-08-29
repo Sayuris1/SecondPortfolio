@@ -47,19 +47,44 @@ instances {
   }
 }
 instances {
-  id: "planet"
-  prototype: "/game_objects/planet.go"
+  id: "astroid1"
+  prototype: "/assets/models/astroids/astroid1.go"
   position {
     x: 1.0
-    z: 10.0
+    z: 9.0
   }
 }
 instances {
-  id: "planet1"
-  prototype: "/game_objects/planet.go"
+  id: "astroid2"
+  prototype: "/assets/models/astroids/astroid2.go"
   position {
-    x: 4.0
-    z: -10.0
+    x: 0.8
+    z: 8.0
+  }
+}
+instances {
+  id: "astroid3"
+  prototype: "/assets/models/astroids/astroid3.go"
+  position {
+    x: 1.3
+    y: 1.0
+    z: 8.0
+  }
+}
+instances {
+  id: "astroid4"
+  prototype: "/assets/models/astroids/astroid4.go"
+  position {
+    x: 0.5
+    z: 7.0
+  }
+}
+instances {
+  id: "astroid5"
+  prototype: "/assets/models/astroids/astroid5.go"
+  position {
+    x: -2.0
+    z: 8.0
   }
 }
 scale_along_z: 0
