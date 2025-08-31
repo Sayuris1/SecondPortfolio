@@ -28,10 +28,7 @@ void main()
     diff_light = max(dot(var_normal,diff_light), 0.0) + ambient_light;
     diff_light = clamp(diff_light, 0.0, 1.0);
 
-    vec2 new_local = vec2(var_position_local.x, var_position_local.y);
-    float d = 1 / (length(new_local)) * sin(u_time.x * 3) * 0.05;
-
-    //out_fragColor = vec4(col);
-    out_fragColor = vec4(d * diff_light, 1.0);
+    float time = sin(u_time.x * 3) + 1;
+    out_fragColor = vec4(diff_light + time, 1.0);
 }
 

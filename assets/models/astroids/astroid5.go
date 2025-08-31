@@ -4,7 +4,7 @@ embedded_components {
   data: "mesh: \"/assets/models/astroids/astroid5.glb\"\n"
   "name: \"{{NAME}}\"\n"
   "materials {\n"
-  "  name: \"wall-stone-3\"\n"
+  "  name: \"wall-stone-4.003\"\n"
   "  material: \"/assets/models/astroids/astroid.material\"\n"
   "}\n"
   ""

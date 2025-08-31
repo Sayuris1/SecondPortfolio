@@ -1,1 +1,13 @@
 script: "/render/port.render_script"
+render_resources {
+  name: "hdr"
+  path: "/assets/background/hdr.material"
+}
+render_resources {
+  name: "bloom_sperate"
+  path: "/assets/background/bloom_sperate.material"
+}
+render_resources {
+  name: "blur"
+  path: "/assets/background/blur.material"
+}

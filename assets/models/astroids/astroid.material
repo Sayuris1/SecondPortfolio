@@ -1,5 +1,6 @@
 name: "astroid"
 tags: "model"
+tags: "bloom"
 vertex_program: "/assets/models/astroids/astroid.vp"
 fragment_program: "/assets/models/astroids/astroid.fp"
 vertex_space: VERTEX_SPACE_LOCAL

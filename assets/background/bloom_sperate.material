@@ -1,7 +1,7 @@
-name: "background"
-tags: "bg"
-vertex_program: "/assets/background/background.vp"
-fragment_program: "/assets/background/background.fp"
+name: "bloom_sperate"
+tags: "post"
+vertex_program: "/assets/background/bloom_sperate.vp"
+fragment_program: "/assets/background/bloom_sperate.fp"
 vertex_space: VERTEX_SPACE_LOCAL
 vertex_constants {
   name: "view_proj"

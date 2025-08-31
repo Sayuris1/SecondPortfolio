@@ -10,7 +10,7 @@ in mediump vec2 texcoord0;
 in mediump vec3 normal;
 
 out highp vec4 var_position;
-out highp vec4 var_position_local;
+out mediump vec4 var_position_local;
 out mediump vec3 var_normal;
 out mediump vec2 var_texcoord0;
 out mediump vec4 var_light;

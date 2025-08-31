@@ -73,6 +73,21 @@ local predicates =
 		tags = { hash("debug_text") },
 		object = nil
 	},
+	bloom =
+	{
+		tags = { hash("bloom") },
+		object = nil
+	},
+	post=
+	{
+		tags = { hash("post") },
+		object = nil
+	},
+	bg=
+	{
+		tags = { hash("bg") },
+		object = nil
+	},
 	-- Declare custom predicates.
 }
 
@@ -266,9 +281,24 @@ function init(self)
 		[graphics.BUFFER_TYPE_DEPTH_BIT] = 1,
 		[graphics.BUFFER_TYPE_STENCIL_BIT] = 0
 	}
+
+	local color_params = { format = graphics.TEXTURE_FORMAT_RGBA32F,
+                           width = render.get_window_width(),
+                           height = render.get_window_height(),
+                           min_filter = graphics.TEXTURE_FILTER_LINEAR,
+                           mag_filter = graphics.TEXTURE_FILTER_LINEAR,
+                           u_wrap = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE,
+                           v_wrap = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE }
+
+	self.post_render_target1 = render.render_target("post1", {[graphics.BUFFER_TYPE_COLOR0_BIT] = color_params})
+
+	self.bloom_render_target1= render.render_target("bloom1", {[graphics.BUFFER_TYPE_COLOR0_BIT] = color_params})
+	self.bloom_render_target2= render.render_target("bloom2", {[graphics.BUFFER_TYPE_COLOR0_BIT] = color_params})
 end
 
+local time = 0
 function update(self, dt)
+	time = time + dt;
 	-- Enable writing to the depth and stencil buffers, and set the default blend function.
 	-- Writing to the color buffer is always enabled.
 	render.set_depth_mask(true)
@@ -284,6 +314,16 @@ function update(self, dt)
 		-- Only render this camera if it is active.
 		if camera.active then
 			activate_camera(camera)
+			local time_constant_buffer = render.constant_buffer()
+			time_constant_buffer.u_time = vmath.vector4(time, 0.0, 0.0, 0.0);
+
+			render.set_render_target_size(self.post_render_target1, render.get_window_width(), render.get_window_height())
+
+			render.set_render_target(self.post_render_target1)
+			render.clear(clear_buffers)
+
+			render.draw(predicates.bg.object, { frustum = camera.frustum })
+
 			-- Second, render 2D objects.
 			-- Disable depth testing because Defold sorts 2D objects by their z positions from back to front.
 			-- Enable blending to support partially transparent objects.
@@ -298,15 +338,60 @@ function update(self, dt)
 			-- First, render 3D objects.
 			-- Enable depth testing and facing culling to discard non-visible fragments.
 			-- Blending is not supported for 3D objects because Defold does not sort them from back to front, which is a requirement for proper blending.
+
 			render.set_depth_mask(true)
 			render.enable_state(graphics.STATE_DEPTH_TEST)
 			render.enable_state(graphics.STATE_CULL_FACE)
 			render.enable_state(graphics.STATE_BLEND)
-			render.draw(predicates.model.object, { frustum = camera.frustum })
+			render.draw(predicates.model.object, { frustum = camera.frustum, constants = time_constant_buffer })
+			render.draw(predicates.tile.object, { frustum = camera.frustum })
 			render.disable_state(graphics.STATE_BLEND)
 			render.disable_state(graphics.STATE_CULL_FACE)
 			render.disable_state(graphics.STATE_DEPTH_TEST)
 			render.set_depth_mask(false)
+
+ 			render.set_render_target_size(self.bloom_render_target1, render.get_window_width() * 0.25, render.get_window_height() * 0.25)
+			render.set_viewport(0, 0, render.get_window_width() * 0.25, render.get_window_height() * 0.25)
+			render.set_render_target(self.bloom_render_target1)
+ 			render.enable_texture(0, self.post_render_target1)
+			render.enable_material("bloom_sperate")
+			render.draw(predicates.post.object, { frustum = camera.frustum })
+			render.disable_material()
+			render.disable_texture(0)
+
+
+			local blur_constant_buffer1= render.constant_buffer()
+			blur_constant_buffer1.u_res = vmath.vector4(render.get_window_width() * 0.25, render.get_window_width() * 0.25, 2.0, 0.0);
+
+			local blur_constant_buffer2= render.constant_buffer()
+			blur_constant_buffer2.u_res = vmath.vector4(render.get_window_width() * 0.25, render.get_window_width() * 0.25, 1.0, 0.0);
+
+ 			render.set_render_target_size(self.bloom_render_target2, render.get_window_width() * 0.25, render.get_window_height() * 0.25)
+			render.set_render_target(self.bloom_render_target2)
+ 			render.enable_texture(0, self.bloom_render_target1)
+			render.enable_material("blur")
+			render.draw(predicates.post.object, { frustum = camera.frustum, constants = blur_constant_buffer1 })
+			render.disable_material()
+			render.disable_texture(0)
+
+			render.set_render_target(self.bloom_render_target1)
+ 			render.enable_texture(0, self.bloom_render_target2)
+			render.enable_material("blur")
+			render.draw(predicates.post.object, { frustum = camera.frustum, constants = blur_constant_buffer2 })
+			render.disable_material()
+			render.disable_texture(0)
+
+			-- POST
+			render.set_render_target(render.RENDER_TARGET_DEFAULT)
+			render.set_viewport(0, 0, render.get_window_width(), render.get_window_height())
+
+ 			render.enable_texture("tex0", self.post_render_target1)
+ 			render.enable_texture("tex1", self.bloom_render_target1)
+			render.enable_material("hdr")
+			render.draw(predicates.post.object, { frustum = camera.frustum })
+			render.disable_material()
+			render.disable_texture(0)
+			render.disable_texture(1)
 		end
 	end
 	-- Render the GUI camera on top of all other cameras.

@@ -109,5 +109,5 @@ void main()
     vec3 c = ro + rd * d;
     vec3 col = color(c);
 
-    out_fragColor = vec4(col, d);;
+    out_fragColor = vec4(col, clamp(d, 0.0, 1.0));
 }
