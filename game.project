@@ -6,8 +6,8 @@ render = /render/port.renderc
 shared_state = 1
 
 [display]
-width = 960
-height = 640
+width = 606
+height = 1280
 high_dpi = 1
 
 [android]
