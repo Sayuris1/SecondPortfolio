@@ -15,9 +15,7 @@ uniform fs_uniforms
 
 void main()
 {
-    vec3 lightPos = vec3(0, 0, 15);
-
-    vec4 color = vec4(1.0);
+    vec3 lightPos = vec3(0, 2, 15);
 
     vec3 ambient_light = vec3(0.2);
     vec3 diff_light = vec3(normalize(lightPos - var_position.xyz));
@@ -26,10 +24,8 @@ void main()
 
     vec3 viewDirection = normalize(vec3(0.0, 0.0, 15.0) - var_position.xyz);
     vec3 reflectDirection = normalize(reflect(-lightPos, var_normal));
-    float spec = pow(max(dot(viewDirection, reflectDirection), 0.0), 128);
-    vec3 specular = 0.5 * spec * vec3(1.0, 1.0, 1.0);
+    float spec = pow(max(dot(viewDirection, reflectDirection), 0.0), 2);
+    vec3 specular = spec * vec3(1.0, 1.0, 1.0) * 1.2;
 
-    float y_pos = step(var_texcoord0.y, u_fill.x + texture(tex0, var_texcoord0.xy * 3 + u_fill.y).y * 0.1);
-
-    out_fragColor = vec4(color.rgb*(diff_light+specular) * y_pos,1.0);
+    out_fragColor = vec4(diff_light+specular,1.0);
 }

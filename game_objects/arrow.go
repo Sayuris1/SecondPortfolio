@@ -43,6 +43,10 @@ embedded_components {
   "  }\n"
   "}\n"
   ""
+  position {
+    x: -0.001
+    z: -0.05
+  }
   rotation {
     x: 0.70710677
     w: 0.70710677
