@@ -11,6 +11,8 @@ function init(self)
 
 	self.particle_count = 0
 
+	self.delete_mod = 0
+
 	msg.post("#model", "disable")
 end
 
@@ -19,13 +21,14 @@ local create_particle = hash("create_particle")
 local u_fill = hash("u_fill")
 
 function update(self, dt)
-	go.set(sprite_fill_url, u_fill, vmath.vector4(self.particle_count / 1000, os.clock() * 0.1,  0, 0))
+	go.set(sprite_fill_url, u_fill, vmath.vector4(self.particle_count / 500, os.clock() * 0.1,  0, 0))
 end
 
 local collision_response = hash("collision_response")
 local delete_particle = hash("delete_particle")
+local start_state_end = hash("start_state_end")
 function on_message(self, message_id, message, sender)
-	if message_id == touch then
+	if message_id == touch and self.delete_mod == 0 then
 		if Current_Particle > 0 then
 			local left_rigt = math.random(1, 2) == 1 and -1 or 1
 			msg.post(particle_creator_url, create_particle, {spawn_pos = go.get_position(base_url), aim_pos = go.get_position(), left_rigt = left_rigt})
@@ -34,12 +37,24 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == collision_response then
 		msg.post(particle_creator_url, delete_particle, {particle_id = message.other_id})
 
-		self.particle_count = math.min(1000, self.particle_count + 1)
-		if self.particle_count >= 1000 then
+		self.particle_count = math.min(280, self.particle_count + 1)
+		if self.particle_count >= 280 then
 
 			msg.post("#model", "enable")
 			msg.post("#sprite_fill", "disable")
 			msg.post("#sprite_outline", "disable")
+
+			if START_STATE_END == 0 then
+				msg.post("/start_guide#start_controller", "arrow_full")
+			end
 		end
+
+	elseif message_id == start_state_end then
+		self.delete_mod = 1;
+		go.animate(".", "euler.y", go.PLAYBACK_ONCE_FORWARD, 360 * 4, go.EASING_INCIRC, 1, 0, function ()
+			START_STATE_END = 1;
+			msg.post("/start_guide#hold", "disable")
+			go.delete(".", true)
+		end)
 	end
 end

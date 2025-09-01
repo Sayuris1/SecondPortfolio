@@ -88,6 +88,11 @@ local predicates =
 		tags = { hash("bg") },
 		object = nil
 	},
+	base=
+	{
+		tags = { hash("base") },
+		object = nil
+	},
 	-- Declare custom predicates.
 }
 
@@ -324,6 +329,20 @@ function update(self, dt)
 
 			render.draw(predicates.bg.object, { frustum = camera.frustum })
 
+			-- First, render 3D objects.
+			-- Enable depth testing and facing culling to discard non-visible fragments.
+			-- Blending is not supported for 3D objects because Defold does not sort them from back to front, which is a requirement for proper blending.
+
+			render.set_depth_mask(true)
+			render.enable_state(graphics.STATE_DEPTH_TEST)
+			render.enable_state(graphics.STATE_CULL_FACE)
+			render.enable_state(graphics.STATE_BLEND)
+			render.draw(predicates.model.object, { frustum = camera.frustum, constants = time_constant_buffer })
+			render.draw(predicates.base.object, { frustum = camera.frustum}) render.disable_state(graphics.STATE_BLEND)
+			render.disable_state(graphics.STATE_CULL_FACE)
+			render.disable_state(graphics.STATE_DEPTH_TEST)
+			render.set_depth_mask(false)
+
 			-- Second, render 2D objects.
 			-- Disable depth testing because Defold sorts 2D objects by their z positions from back to front.
 			-- Enable blending to support partially transparent objects.
@@ -335,20 +354,7 @@ function update(self, dt)
 			render.enable_state(graphics.STATE_BLEND)
 			render.draw_debug3d()
 			render.disable_state(graphics.STATE_BLEND)
-			-- First, render 3D objects.
-			-- Enable depth testing and facing culling to discard non-visible fragments.
-			-- Blending is not supported for 3D objects because Defold does not sort them from back to front, which is a requirement for proper blending.
 
-			render.set_depth_mask(true)
-			render.enable_state(graphics.STATE_DEPTH_TEST)
-			render.enable_state(graphics.STATE_CULL_FACE)
-			render.enable_state(graphics.STATE_BLEND)
-			render.draw(predicates.model.object, { frustum = camera.frustum, constants = time_constant_buffer })
-			render.draw(predicates.tile.object, { frustum = camera.frustum })
-			render.disable_state(graphics.STATE_BLEND)
-			render.disable_state(graphics.STATE_CULL_FACE)
-			render.disable_state(graphics.STATE_DEPTH_TEST)
-			render.set_depth_mask(false)
 
  			render.set_render_target_size(self.bloom_render_target1, render.get_window_width() * 0.25, render.get_window_height() * 0.25)
 			render.set_viewport(0, 0, render.get_window_width() * 0.25, render.get_window_height() * 0.25)

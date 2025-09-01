@@ -1,0 +1,282 @@
+name: "start"
+instances {
+  id: "rendy"
+  prototype: "/rendy/rendy.go"
+  position {
+    z: 15.0
+  }
+  component_properties {
+    id: "script"
+    properties {
+      id: "orthographic"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "resize_mode_center"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "resize_mode_expand"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "resize_mode_stretch"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "viewport_width"
+      value: "606.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "viewport_height"
+      value: "1280.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "resolution_width"
+      value: "606.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "resolution_height"
+      value: "1280.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "z_min"
+      value: "0.1"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "z_max"
+      value: "1000.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+  }
+}
+instances {
+  id: "arrow"
+  prototype: "/game_objects/arrow.go"
+  position {
+    y: 3.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "start_guide"
+  children: "arrow"
+  data: "components {\n"
+  "  id: \"start_controller\"\n"
+  "  component: \"/scripts/start_controller.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"move\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "leading: -10.0\\n"
+  "text: \\\"PRESS AND MOVE\\\\n"
+  "\\\"\\n"
+  "  \\\"\\\"\\n"
+  "font: \\\"/assets/fonts/spacesky.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  scale {\n"
+  "    x: 0.002\n"
+  "    y: 0.002\n"
+  "    z: 0.002\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"move1\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "leading: -10.0\\n"
+  "text: \\\"TO COLLECT ENERGY\\\"\\n"
+  "font: \\\"/assets/fonts/spacesky.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    y: -1.0\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 0.002\n"
+  "    y: 0.002\n"
+  "    z: 0.002\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"hold\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "leading: -10.0\\n"
+  "text: \\\"PRESS AND HOLD\\\"\\n"
+  "font: \\\"/assets/fonts/spacesky.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    y: 2.0\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 0.002\n"
+  "    y: 0.002\n"
+  "    z: 0.002\n"
+  "  }\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "background"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad_2x2.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/assets/background/background.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/assets/models/sphere/Noise.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  scale3 {
+    x: 10.0
+    y: 10.0
+    z: 10.0
+  }
+}
+embedded_instances {
+  id: "base"
+  data: "components {\n"
+  "  id: \"base_collector\"\n"
+  "  component: \"/scripts/base_collector.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"collisionobject\"\n"
+  "  type: \"collisionobject\"\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_TRIGGER\\n"
+  "mass: 0.0\\n"
+  "friction: 0.1\\n"
+  "restitution: 0.5\\n"
+  "group: \\\"base\\\"\\n"
+  "mask: \\\"particle\\\"\\n"
+  "embedded_collision_shape {\\n"
+  "  shapes {\\n"
+  "    shape_type: TYPE_SPHERE\\n"
+  "    position {\\n"
+  "    }\\n"
+  "    rotation {\\n"
+  "    }\\n"
+  "    index: 0\\n"
+  "    count: 1\\n"
+  "    id: \\\"shape\\\"\\n"
+  "  }\\n"
+  "  data: 0.25\\n"
+  "}\\n"
+  "locked_rotation: true\\n"
+  "bullet: true\\n"
+  "event_collision: false\\n"
+  "event_contact: false\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/assets/models/sphere/sphere.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/assets/models/sphere/Noise.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    y: -3.2
+  }
+  scale3 {
+    x: 4.0
+    y: 4.0
+    z: 4.0
+  }
+}
+embedded_instances {
+  id: "cursor"
+  data: "components {\n"
+  "  id: \"cursor\"\n"
+  "  component: \"/scripts/cursor.script\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "debugger"
+  data: "components {\n"
+  "  id: \"debugger\"\n"
+  "  component: \"/debugger/debugger.script\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "particle_creator"
+  data: "components {\n"
+  "  id: \"particle_creator\"\n"
+  "  component: \"/scripts/particle_creator.script\"\n"
+  "  properties {\n"
+  "    id: \"spawn_spread_time\"\n"
+  "    value: \"0.2\"\n"
+  "    type: PROPERTY_TYPE_NUMBER\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_base\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/game_objects/particle_base.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_pull\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/game_objects/particle_pull.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "post"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad_2x2.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/assets/background/hdr.material\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 3.0
+  }
+}

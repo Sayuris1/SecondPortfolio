@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /main/main.collectionc
+main_collection = /main/start.collectionc
 render = /render/port.renderc
 
 [script]
@@ -31,4 +31,7 @@ use_accelerometer = 0
 [render]
 clear_color_red = 0.0
 clear_color_alpha = 0.0
+
+[sprite]
+max_count = 512
 

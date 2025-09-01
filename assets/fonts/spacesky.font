@@ -1,0 +1,6 @@
+font: "/assets/fonts/SPACE.ttf"
+material: "/builtins/fonts/font-df.material"
+size: 200
+shadow_blur: 0
+render_mode: MODE_MULTI_LAYER
+characters: " !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"

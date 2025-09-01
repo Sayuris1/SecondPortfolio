@@ -4,9 +4,12 @@ local particle_creator_url
 local base_model_url
 local background_model_url
 
+START_STATE_END = 0
 function init(self)
 	self.wiggle_x = 0
 	self.wiggle_incementor = 0
+
+	self.base_size = 0;
 
 	Current_Particle = 0
 
@@ -19,9 +22,8 @@ local u_time = hash("u_time")
 local time = 0
 local wiggle_tween = 0
 function update(self, dt)
-	local base_size = Current_Particle * 0.003
-	go.set(base_model_url, u_time, vmath.vector4(time, self.wiggle_x, base_size, 0))
-	go.set(background_model_url, u_time, vmath.vector4(time, 0, 0, 0))
+	go.set(base_model_url, u_time, vmath.vector4(time, self.wiggle_x, self.base_size, 0))
+	go.set(background_model_url, u_time, vmath.vector4(time, START_STATE_END, 0, 0))
 
 	time = time + dt
 	if self.wiggle_incementor >= 0 then
@@ -39,13 +41,20 @@ end
 local trigger_response = hash("trigger_response")
 local delete_particle = hash("delete_particle")
 local create_particle_message = hash("create_particle")
+local start_state_end_message = hash("start_state_end_message")
 function on_message(self, message_id, message, sender)
 	if message_id == trigger_response then
 		msg.post(particle_creator_url, delete_particle, {particle_id = message.other_id})
 		self.wiggle_incementor = 0.3
 
 		Current_Particle = math.min(500, Current_Particle + 5)
+        self.base_size = Current_Particle * 0.003
+
+		if START_STATE_END == 0 and Current_Particle == 500 then
+			msg.post("/start_guide#start_controller", "base_full")
+		end
 	elseif create_particle_message then
 		Current_Particle = math.max(0, Current_Particle - 1)
+        self.base_size = Current_Particle * 0.003
 	end
 end

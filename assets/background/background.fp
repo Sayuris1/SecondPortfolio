@@ -78,5 +78,5 @@ void main()
     
     vec3 col = finalComp;
     
-    out_fragColor = vec4(col,1);
+    out_fragColor = vec4(col * u_time.y, 1.0);
 }

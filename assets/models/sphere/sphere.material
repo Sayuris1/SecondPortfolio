@@ -1,5 +1,5 @@
 name: "sphere"
-tags: "model"
+tags: "base"
 vertex_program: "/assets/models/sphere/sphere.vp"
 fragment_program: "/assets/models/sphere/sphere.fp"
 vertex_space: VERTEX_SPACE_LOCAL
