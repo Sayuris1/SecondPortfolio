@@ -50,8 +50,12 @@ function on_message(self, message_id, message, sender)
 		Current_Particle = math.min(500, Current_Particle + 5)
         self.base_size = Current_Particle * 0.003
 
-		if START_STATE_END == 0 and Current_Particle == 500 then
-			msg.post("/start_guide#start_controller", "base_full")
+		if START_STATE_END == 0 then
+			if Current_Particle == 500 then
+				msg.post("/start_guide#gui", "base_full")
+			else
+				msg.post("/start_guide#gui", "particle_collected")
+			end
 		end
 	elseif create_particle_message then
 		Current_Particle = math.max(0, Current_Particle - 1)

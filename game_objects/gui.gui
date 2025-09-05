@@ -1,0 +1,96 @@
+script: "/scripts/gui.gui_script"
+fonts {
+  name: "spacesky"
+  font: "/assets/fonts/spacesky.font"
+}
+nodes {
+  position {
+    x: 296.0
+    y: 432.5
+  }
+  scale {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  size {
+    x: 190.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Keep collecting energy"
+  font: "spacesky"
+  id: "go_on"
+  inherit_alpha: true
+  material: "font_gui"
+}
+nodes {
+  position {
+    x: 302.0
+    y: 1041.0
+  }
+  scale {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  size {
+    x: 190.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "PRESS AND HOLD"
+  font: "spacesky"
+  id: "hold"
+  inherit_alpha: true
+  material: "font_gui"
+}
+nodes {
+  position {
+    x: 306.0
+    y: 192.0
+  }
+  scale {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  size {
+    x: 190.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "PRESS AND MOVE\n"
+  ""
+  font: "spacesky"
+  id: "move"
+  inherit_alpha: true
+  material: "font_gui"
+}
+nodes {
+  position {
+    x: 326.0
+    y: 84.0
+  }
+  scale {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  size {
+    x: 190.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "TO COLLECT ENERGY"
+  font: "spacesky"
+  id: "move1"
+  inherit_alpha: true
+  material: "font_gui"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+materials {
+  name: "font_gui"
+  material: "/assets/fonts/font_gui.material"
+}

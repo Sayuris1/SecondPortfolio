@@ -45,7 +45,7 @@ function on_message(self, message_id, message, sender)
 			msg.post("#sprite_outline", "disable")
 
 			if START_STATE_END == 0 then
-				msg.post("/start_guide#start_controller", "arrow_full")
+				msg.post("/start_guide#gui", "arrow_full")
 			end
 		end
 
@@ -53,7 +53,7 @@ function on_message(self, message_id, message, sender)
 		self.delete_mod = 1;
 		go.animate(".", "euler.y", go.PLAYBACK_ONCE_FORWARD, 360 * 4, go.EASING_INCIRC, 1, 0, function ()
 			START_STATE_END = 1;
-			msg.post("/start_guide#hold", "disable")
+			msg.post("/start_guide#gui", "start_state_end")
 			go.delete(".", true)
 		end)
 	end
