@@ -1,9 +1,15 @@
-local dtypewriter = require "dtypewriter.dtypewriter"
+local dtypewriter = require "scripts.dtypewriter"
 
 function init(self)
 	gui.set_enabled(gui.get_node("hold"), false)
-	gui.set_enabled(gui.get_node("go_on"), false)
+	--gui.set_enabled(gui.get_node("go_on"), false)
 	msg.post("/arrow", "disable")
+
+	local text_node = "go_on"
+	dtypewriter.init(text_node, "spacesky", 0, 0.0, 10000, 0, 0, msg.url())
+	dtypewriter.add_color("green", vmath.vector4(1.0, 0.0, 0.0, 1.0));
+	dtypewriter.load("PRESS AND <color=green>HOLD")
+	dtypewriter.start()
 
 	self.is_go_on_enabled = false
 end

@@ -1,7 +1,6 @@
 local rendy = require "rendy.rendy"
 local utils = require "scripts.utils"
 
-
 local function create_particle(spawn_pos, aim_pos, left_right, factory_url, particle_table)
 	local id = factory.create(factory_url, spawn_pos, nil, nil, vmath.vector3(0.01))
 	particle_table[id] = {v = vmath.vector3(15 * left_right, math.random(-15, 15), 0), a = vmath.vector3(0), t = 0, aim_pos = aim_pos}

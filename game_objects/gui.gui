@@ -5,48 +5,6 @@ fonts {
 }
 nodes {
   position {
-    x: 296.0
-    y: 432.5
-  }
-  scale {
-    x: 0.2
-    y: 0.2
-    z: 0.2
-  }
-  size {
-    x: 190.0
-    y: 100.0
-  }
-  type: TYPE_TEXT
-  text: "Keep collecting energy"
-  font: "spacesky"
-  id: "go_on"
-  inherit_alpha: true
-  material: "font_gui"
-}
-nodes {
-  position {
-    x: 302.0
-    y: 1041.0
-  }
-  scale {
-    x: 0.2
-    y: 0.2
-    z: 0.2
-  }
-  size {
-    x: 190.0
-    y: 100.0
-  }
-  type: TYPE_TEXT
-  text: "PRESS AND HOLD"
-  font: "spacesky"
-  id: "hold"
-  inherit_alpha: true
-  material: "font_gui"
-}
-nodes {
-  position {
     x: 306.0
     y: 192.0
   }
@@ -85,6 +43,43 @@ nodes {
   text: "TO COLLECT ENERGY"
   font: "spacesky"
   id: "move1"
+  inherit_alpha: true
+  material: "font_gui"
+}
+nodes {
+  position {
+    x: 63.0
+    y: 1232.5
+  }
+  scale {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  type: TYPE_TEXT
+  font: "spacesky"
+  id: "go_on"
+  inherit_alpha: true
+  material: "font_gui"
+}
+nodes {
+  position {
+    x: 283.0
+    y: 1041.0
+  }
+  scale {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  size {
+    x: 190.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "PRESS AND HOLD"
+  font: "spacesky"
+  id: "hold"
   inherit_alpha: true
   material: "font_gui"
 }
