@@ -16,7 +16,7 @@ uniform vs_uniforms
 
 void main()
 {
-    vec4 p = mtx_worldview * vec4(position.xyz, 1.0);
+    vec4 p = mtx_worldview * position;
     var_position = p;
     var_texcoord0 = texcoord0;
     gl_Position = mtx_proj * p;

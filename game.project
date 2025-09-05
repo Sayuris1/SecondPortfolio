@@ -25,6 +25,8 @@ dependencies#2 = https://github.com/whiteboxdev/library-defold-typewriter/archiv
 [physics]
 use_fixed_timestep = 1
 type = 3D
+max_collision_object_count = 256
+max_collisions = 128
 
 [input]
 use_accelerometer = 0

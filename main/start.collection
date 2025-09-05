@@ -2,6 +2,7 @@ name: "start"
 instances {
   id: "rendy"
   prototype: "/rendy/rendy.go"
+  children: "base"
   position {
     z: 15.0
   }
@@ -105,65 +106,6 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "base"
-  data: "components {\n"
-  "  id: \"base_collector\"\n"
-  "  component: \"/scripts/base_collector.script\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"collisionobject\"\n"
-  "  type: \"collisionobject\"\n"
-  "  data: \"type: COLLISION_OBJECT_TYPE_TRIGGER\\n"
-  "mass: 0.0\\n"
-  "friction: 0.1\\n"
-  "restitution: 0.5\\n"
-  "group: \\\"base\\\"\\n"
-  "mask: \\\"particle\\\"\\n"
-  "embedded_collision_shape {\\n"
-  "  shapes {\\n"
-  "    shape_type: TYPE_SPHERE\\n"
-  "    position {\\n"
-  "    }\\n"
-  "    rotation {\\n"
-  "    }\\n"
-  "    index: 0\\n"
-  "    count: 1\\n"
-  "    id: \\\"shape\\\"\\n"
-  "  }\\n"
-  "  data: 0.25\\n"
-  "}\\n"
-  "locked_rotation: true\\n"
-  "bullet: true\\n"
-  "event_collision: false\\n"
-  "event_contact: false\\n"
-  "\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"model\"\n"
-  "  type: \"model\"\n"
-  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
-  "name: \\\"{{NAME}}\\\"\\n"
-  "materials {\\n"
-  "  name: \\\"default\\\"\\n"
-  "  material: \\\"/assets/models/sphere/sphere.material\\\"\\n"
-  "  textures {\\n"
-  "    sampler: \\\"tex0\\\"\\n"
-  "    texture: \\\"/assets/models/sphere/Noise.png\\\"\\n"
-  "  }\\n"
-  "}\\n"
-  "\"\n"
-  "}\n"
-  ""
-  position {
-    y: -3.2
-  }
-  scale3 {
-    x: 4.0
-    y: 4.0
-    z: 4.0
-  }
-}
-embedded_instances {
   id: "cursor"
   data: "components {\n"
   "  id: \"cursor\"\n"
@@ -220,5 +162,65 @@ embedded_instances {
   ""
   position {
     x: 3.0
+  }
+}
+embedded_instances {
+  id: "base"
+  data: "components {\n"
+  "  id: \"base_collector\"\n"
+  "  component: \"/scripts/base_collector.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"collisionobject\"\n"
+  "  type: \"collisionobject\"\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_TRIGGER\\n"
+  "mass: 0.0\\n"
+  "friction: 0.1\\n"
+  "restitution: 0.5\\n"
+  "group: \\\"base\\\"\\n"
+  "mask: \\\"particle\\\"\\n"
+  "embedded_collision_shape {\\n"
+  "  shapes {\\n"
+  "    shape_type: TYPE_SPHERE\\n"
+  "    position {\\n"
+  "    }\\n"
+  "    rotation {\\n"
+  "    }\\n"
+  "    index: 0\\n"
+  "    count: 1\\n"
+  "    id: \\\"shape\\\"\\n"
+  "  }\\n"
+  "  data: 0.25\\n"
+  "}\\n"
+  "locked_rotation: true\\n"
+  "bullet: true\\n"
+  "event_collision: false\\n"
+  "event_contact: false\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/assets/models/sphere/sphere.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/assets/models/sphere/Noise.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    y: -5.2
+    z: -15.0
+  }
+  scale3 {
+    x: 4.0
+    y: 4.0
+    z: 4.0
   }
 }

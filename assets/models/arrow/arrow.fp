@@ -11,6 +11,7 @@ uniform mediump sampler2D tex0;
 uniform fs_uniforms
 {
     mediump vec4 u_fill;
+    mediump vec4 tint;
 };
 
 void main()
@@ -27,5 +28,5 @@ void main()
     float spec = pow(max(dot(viewDirection, reflectDirection), 0.0), 2);
     vec3 specular = spec * vec3(1.0, 1.0, 1.0) * 1.2;
 
-    out_fragColor = vec4(diff_light+specular,1.0);
+    out_fragColor = vec4(diff_light+specular,1.0) * tint;
 }
