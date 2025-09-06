@@ -1,18 +1,27 @@
 #version 140
 
 // positions are in world space
-in highp vec4 position;
+in highp vec3 position;
 in mediump vec2 texcoord0;
 
 out mediump vec2 var_texcoord0;
+out mediump vec3 var_texcoord1;
 
 uniform vs_uniforms
 {
-    highp mat4 view_proj;
+    highp mat4 mtx_view_proj;
+    highp mat4 mtx_world;
 };
 
 void main()
 {
-    gl_Position = position;
+    mat4 wvp = mtx_world * mtx_view_proj;
+    vec4 wvp_pos = wvp * vec4(position, 1.0);
+    gl_Position = wvp_pos.xyww;
+
     var_texcoord0 = texcoord0;
+    var_texcoord1 = position;
+
+/*     gl_Position = position;
+    var_texcoord0 = texcoord0; */
 }

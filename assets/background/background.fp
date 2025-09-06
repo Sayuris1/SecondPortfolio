@@ -1,10 +1,12 @@
 #version 140
 
 in mediump vec2 var_texcoord0;
+in mediump vec3 var_texcoord1;
 
 out vec4 out_fragColor;
 
 uniform mediump sampler2D tex0;
+uniform samplerCube cubemap;
 uniform fs_uniforms
 {
     uniform mediump vec4 u_time;
@@ -51,6 +53,7 @@ void main()
 
     // rotate with Noise
 	float degree = texture(tex0, vec2(u_time.x * 0.01, tuv.x*tuv.y)).x * 0.5;
+    degree = texture(cubemap, var_texcoord1 + u_time.x).x * 0.5;
 
     tuv.y *= 1./ratio;
     tuv *= Rot(radians((degree-.5)*720.+180.));

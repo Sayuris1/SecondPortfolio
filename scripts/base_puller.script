@@ -59,6 +59,7 @@ function on_message(self, message_id, message, sender)
 				START_STATE_END = value;
 
 				if is_final_call then
+					pprint("as")
 					go.delete(".", true)
 				end
 			end)
