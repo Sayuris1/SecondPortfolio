@@ -334,8 +334,8 @@ function update(self, dt)
 			-- Blending is not supported for 3D objects because Defold does not sort them from back to front, which is a requirement for proper blending.
 
 			render.set_depth_mask(true)
-			render.enable_state(graphics.STATE_BLEND)
 			render.enable_state(graphics.STATE_DEPTH_TEST)
+			render.enable_state(graphics.STATE_CULL_FACE)
 			render.enable_state(graphics.STATE_BLEND)
 			render.draw(predicates.model.object, { frustum = camera.frustum, constants = time_constant_buffer })
 			render.draw(predicates.base.object)
