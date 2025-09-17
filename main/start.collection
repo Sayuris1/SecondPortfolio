@@ -6,11 +6,8 @@ instances {
   children: "base"
   children: "camera_controller"
   position {
+    x: -2.0
     z: 15.0
-  }
-  rotation {
-    y: 0.017452406
-    w: 0.9998477
   }
   component_properties {
     id: "script"

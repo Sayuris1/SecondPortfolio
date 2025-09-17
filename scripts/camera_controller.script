@@ -1,9 +1,9 @@
 local bz = require("bzAnim.bzLibrary")
 
 function init(self)
-	-- Add initialization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+    self.last_pos = go.get_world_position()
+
+	self.rendy_url = msg.url("/rendy")
 end
 
 function final(self)
@@ -13,9 +13,25 @@ function final(self)
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+    local current_pos = go.get_world_position()
+	if self.last_pos ~= current_pos then
+		local upwards = vmath.vector3(0, 1, 0)
+		local forward = current_pos - self.last_pos
+
+		if vmath.length_sqr(forward) < 0.0000000001 or vmath.length_sqr(upwards) < 0.0000000001 then
+			return vmath.quat()
+		elseif math.abs(vmath.dot(forward, upwards)) > 0.9999999 then
+			return vmath.quat_from_to(vmath.vector3(0, 0, 1), forward)
+		end
+
+		local matrix = vmath.matrix4_look_at(vmath.vector3(0), forward, upwards)
+
+		local q = vmath.slerp(0.15, go.get_world_rotation(self.rendy_url), vmath.conj(vmath.quat_matrix4(matrix)))
+		go.set_rotation(q, self.rendy_url)
+
+		pprint(vmath.quat_to_euler(go.get_world_rotation()))
+		pprint(go.get_world_position())
+	end
 end
 
 function fixed_update(self, dt)
@@ -32,10 +48,10 @@ function on_message(self, message_id, message, sender)
 	if message_id == start_state_move then
 		bz.animate({
 			obj = "/rendy",
-			duration = 0.5,
+			duration = 1,
 			path = {
-				{ x=3, y=3, z=5 },
-				{ x=0, y=3, z=5 },
+				{x = -0.5, y = 0, z = 5},
+				{x = 0, y = 3, z = 0},
 			},
 		})
 	end
