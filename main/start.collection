@@ -6,7 +6,6 @@ instances {
   children: "base"
   children: "camera_controller"
   position {
-    x: -2.0
     z: 15.0
   }
   component_properties {
