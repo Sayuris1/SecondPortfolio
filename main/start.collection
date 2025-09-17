@@ -4,6 +4,7 @@ instances {
   prototype: "/rendy/rendy.go"
   children: "background"
   children: "base"
+  children: "camera_controller"
   position {
     z: 15.0
   }
@@ -237,4 +238,20 @@ embedded_instances {
     y: 20.0
     z: 20.0
   }
+}
+embedded_instances {
+  id: "bz_controller"
+  data: "components {\n"
+  "  id: \"bzController\"\n"
+  "  component: \"/bzAnim/bzController.script\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "camera_controller"
+  data: "components {\n"
+  "  id: \"camera_controller\"\n"
+  "  component: \"/scripts/camera_controller.script\"\n"
+  "}\n"
+  ""
 }

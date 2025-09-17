@@ -55,11 +55,12 @@ function on_message(self, message_id, message, sender)
 		self.delete_mod = 1;
 
 		timer.delay(2, false, function ()
+			msg.post("/camera_controller#camera_controller", "start_state_move")
+
 			tweener.tween(tweener.incirc, 0, 1, 1, function (value, is_final_call)
 				START_STATE_END = value;
 
 				if is_final_call then
-					pprint("as")
 					go.delete(".", true)
 				end
 			end)
