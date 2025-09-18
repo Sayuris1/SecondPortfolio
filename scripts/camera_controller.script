@@ -1,5 +1,3 @@
-local bz = require("bzAnim.bzLibrary")
-
 function init(self)
     self.last_pos = go.get_world_position()
 
@@ -45,16 +43,6 @@ end
 
 local start_state_move = hash("start_state_move")
 function on_message(self, message_id, message, sender)
-	if message_id == start_state_move then
-		bz.animate({
-			obj = "/rendy",
-			duration = 1,
-			path = {
-				{x = -0.5, y = 0, z = 5},
-				{x = 0, y = 3, z = 0},
-			},
-		})
-	end
 end
 
 function on_input(self, action_id, action)
