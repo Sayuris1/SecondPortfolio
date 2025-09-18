@@ -14,8 +14,8 @@ function init(self)
 	Current_Particle = 0
 
 	particle_creator_url = msg.url(nil, "/particle_creator", "particle_creator")
-	base_model_url = msg.url(nil, "/base", "model")
-	background_model_url = msg.url(nil, "/background", "model")
+	base_model_url = msg.url(nil, "/operator/base", "model")
+	background_model_url = msg.url(nil, "/operator/background", "model")
 end
 
 local u_time = hash("u_time")

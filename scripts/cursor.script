@@ -1,7 +1,7 @@
 local rendy = require "rendy.rendy"
 
 local touch = hash("touch")
-local camera_id = hash("/rendy")
+local camera_id = hash("/operator/rendy")
 local pull = hash("pull")
 
 function init(self)

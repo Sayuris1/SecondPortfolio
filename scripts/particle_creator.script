@@ -20,7 +20,7 @@ function init(self)
 	factory_base_url = msg.url("#factory_base")
 	factory_pull_url = msg.url("#factory_pull")
 
-	base_url = msg.url("/base")
+	base_url = msg.url("/operator/base")
 
 	msg.post(".", "acquire_input_focus")
 end
@@ -52,7 +52,7 @@ function update(self, dt)
 end
 
 local touch = hash("touch")
-local camera_id = hash("/rendy")
+local camera_id = hash("/operator/rendy")
 function on_input(self, action_id, action)
 	if action_id == touch then
 		local move_speed = math.abs(action.screen_dx) + math.abs(action.screen_dy)
@@ -60,7 +60,7 @@ function on_input(self, action_id, action)
 
 		if self.current_delta_threshold <= 0 then
 			local pos = rendy.screen_to_world(camera_id, vmath.vector3(action.screen_x, action.screen_y, 15))
-			pos.z = 0
+			pos.z = go.get_world_position(base_url).z
 
 			local dx_sign = utils.sign(action.screen_dx)
 			create_particle(pos, go.get_world_position(base_url), dx_sign, factory_base_url, self.particles)

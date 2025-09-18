@@ -6,7 +6,7 @@ local sprite_fill_url
 
 function init(self)
 	particle_creator_url = msg.url("/particle_creator")
-	base_url = msg.url("/base")
+	base_url = msg.url("/operator/base")
 
 	sprite_fill_url = msg.url()
 	sprite_fill_url.fragment = "sprite_fill"
@@ -16,6 +16,8 @@ function init(self)
 	self.delete_mod = 0
 
 	msg.post("#model", "disable")
+
+	go.set_position(vmath.vector3(0,0,0), "/operator/rendy")
 end
 
 local touch = hash("touch")
@@ -24,6 +26,9 @@ local u_fill = hash("u_fill")
 
 function update(self, dt)
 	go.set(sprite_fill_url, u_fill, vmath.vector4(self.particle_count / 500, os.clock() * 0.1,  0, 0))
+
+	pprint(go.get_world_position("/operator/rendy"))
+
 end
 
 local collision_response = hash("collision_response")
