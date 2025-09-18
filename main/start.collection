@@ -74,6 +74,51 @@ instances {
     y: 3.0
   }
 }
+instances {
+  id: "illumination"
+  prototype: "/illumination/illumination.go"
+  position {
+    z: 1.0
+  }
+  component_properties {
+    id: "illumination"
+    properties {
+      id: "ambient_color"
+      value: "0.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "ambient_level"
+      value: "0.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "sunlight_color"
+      value: "1.0, 1.0, 1.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "sunlight_brightness"
+      value: "1.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "sunlight_specular"
+      value: "0.5"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "fog"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "fog_is_radial"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "start_guide"
@@ -234,14 +279,6 @@ embedded_instances {
     y: 20.0
     z: 20.0
   }
-}
-embedded_instances {
-  id: "bz_controller"
-  data: "components {\n"
-  "  id: \"bzController\"\n"
-  "  component: \"/bzAnim/bzController.script\"\n"
-  "}\n"
-  ""
 }
 embedded_instances {
   id: "camera_controller"

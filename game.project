@@ -22,6 +22,7 @@ dependencies#0 = https://github.com/klaytonkowalski/library-defold-rendy/archive
 dependencies#1 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.zip
 dependencies#2 = https://github.com/whiteboxdev/library-defold-typewriter/archive/main.zip
 dependencies#3 = https://github.com/jbp4444/bzAnim/archive/refs/heads/main.zip
+dependencies#4 = https://github.com/astrochili/defold-illumination/archive/refs/tags/1.0.3.zip
 
 [physics]
 use_fixed_timestep = 1
