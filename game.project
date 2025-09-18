@@ -21,8 +21,10 @@ title = SecondPortfolio
 dependencies#0 = https://github.com/klaytonkowalski/library-defold-rendy/archive/main.zip
 dependencies#1 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.zip
 dependencies#2 = https://github.com/whiteboxdev/library-defold-typewriter/archive/main.zip
-dependencies#3 = https://github.com/jbp4444/bzAnim/archive/refs/heads/main.zip
-dependencies#4 = https://github.com/astrochili/defold-illumination/archive/refs/tags/1.0.3.zip
+dependencies#3 = https://github.com/astrochili/defold-illumination/archive/refs/tags/1.0.3.zip
+dependencies#4 = https://github.com/astrochili/defold-operator/archive/refs/tags/1.5.3.zip
+dependencies#5 = https://github.com/indiesoftby/defold-hyper-trails/archive/refs/tags/1.4.2.zip
+dependencies#6 = https://github.com/KorolevSoftware/defold-faststream/archive/refs/tags/beta_2.0.zip
 
 [physics]
 use_fixed_timestep = 1
@@ -38,5 +40,8 @@ clear_color_red = 0.0
 clear_color_alpha = 0.0
 
 [sprite]
+max_count = 512
+
+[mesh]
 max_count = 512
 

@@ -6,7 +6,7 @@ local sprite_fill_url
 
 function init(self)
 	particle_creator_url = msg.url("/particle_creator")
-	base_url = msg.url("/base")
+	base_url = msg.url("/rendy/base")
 
 	sprite_fill_url = msg.url()
 	sprite_fill_url.fragment = "sprite_fill"

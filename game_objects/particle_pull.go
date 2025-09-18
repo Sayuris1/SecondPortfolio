@@ -1,3 +1,56 @@
+components {
+  id: "trail_maker"
+  component: "/hyper_trails/trail_maker.script"
+  properties {
+    id: "use_world_position"
+    value: "true"
+    type: PROPERTY_TYPE_BOOLEAN
+  }
+  properties {
+    id: "trail_width"
+    value: "15.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+  properties {
+    id: "segment_length_max"
+    value: "0.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+  properties {
+    id: "segment_length_min"
+    value: "0.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+  properties {
+    id: "points_count"
+    value: "10.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+  properties {
+    id: "points_limit"
+    value: "0.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+  properties {
+    id: "fade_tail_alpha"
+    value: "0.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+  properties {
+    id: "shrink_tail_width"
+    value: "true"
+    type: PROPERTY_TYPE_BOOLEAN
+  }
+  properties {
+    id: "shrink_length_per_sec"
+    value: "0.0"
+    type: PROPERTY_TYPE_NUMBER
+  }
+}
+components {
+  id: "trail_mesh"
+  component: "/hyper_trails/models/trail_mesh.mesh"
+}
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"
