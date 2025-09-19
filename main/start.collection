@@ -58,13 +58,18 @@ instances {
   component_properties {
     id: "astroid_creator"
     properties {
-      id: "spawn_area"
-      value: "10.0, 10.0, 50.0"
+      id: "spawn_area_start"
+      value: "-10.0, -10.0, -50.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "spawn_area_end"
+      value: "10.0, 10.0, -20.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
       id: "scale"
-      value: "0.5, 10.0, 0.0"
+      value: "0.5, 2.0, 0.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
@@ -72,6 +77,13 @@ instances {
       value: "100.0"
       type: PROPERTY_TYPE_NUMBER
     }
+  }
+}
+instances {
+  id: "planet"
+  prototype: "/assets/models/planet/planet.go"
+  position {
+    z: -5.0
   }
 }
 collection_instances {

@@ -1,16 +1,17 @@
-local function random_float (vector)
-	return (math.random() * 2 - 1) + math.random(-vector, vector)
+local function random_float (starter, ender)
+	return (math.random() * 2 - 1) + math.random(starter, ender)
 end
 
 function init(self)
-	go.property("spawn_area", vmath.vector3())
+	go.property("spawn_area_start", vmath.vector3())
+	go.property("spawn_area_end", vmath.vector3())
 	go.property("scale", vmath.vector3())
 	go.property("count", 100)
 
 	for i = 1, self.count, 1 do
 		local id = "#factory" .. math.random(5)
 		local scale = math.random(self.scale.x, self.scale.y)
-		local random_vec = vmath.vector3(random_float(self.spawn_area.x), random_float(self.spawn_area.y), random_float(self.spawn_area.z))
+		local random_vec = vmath.vector3(random_float(self.spawn_area_start.x, self.spawn_area_end.x), random_float(self.spawn_area_start.y, self.spawn_area_end.y), random_float(self.spawn_area_start.z, self.spawn_area_end.z))
 		local astreid = factory.create(id, random_vec, nil, nil, vmath.vector3(scale))
 		pprint(go.get_world_position(astreid))
 	end

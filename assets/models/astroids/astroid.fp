@@ -47,7 +47,7 @@ void main()
     diff_light = max(dot(var_normal,diff_light), 0.0) + ambient_light;
     diff_light = max(diff_light, 0.0);
 
-    float time = (sin(u_time.x) + 0.5) * 2;
+    float time = (sin(u_time.x) + 1.4) * 2;
     out_fragColor = vec4(color(diff_light + time), 1.0);
 }
 
