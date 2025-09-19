@@ -59,12 +59,12 @@ instances {
     id: "astroid_creator"
     properties {
       id: "spawn_area"
-      value: "10.0, 10.0, 100.0"
+      value: "10.0, 10.0, 50.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
       id: "scale"
-      value: "1.0, 3.0, 0.0"
+      value: "0.5, 10.0, 0.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
