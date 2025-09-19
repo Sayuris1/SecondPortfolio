@@ -26,8 +26,10 @@ vec3 colInterp(vec3 bcol, vec3 ecol, vec3 inCol){
 }
 
 vec3 palette(vec3 inCol){
-        vec3 mcol = vec3(0.6);
-        vec3 bcol = mcol/10;
+/*         vec3 mcol = vec3(0.6);
+        vec3 bcol = mcol/10; */
+        vec3 mcol = vec3(0.28235294117, 0.07450980392, 0.29019607843) * 2;
+        vec3 bcol = vec3(0.07843137254, 0.01960784313, 0.1294117647) * 2;
         return colInterp(bcol, mcol, inCol);
 }
 

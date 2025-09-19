@@ -5,6 +5,7 @@
 // MIT license. See LICENSE for details.
 //
 
+#define SHADES 4
 #define pi 3.1415926535897932384626433832795
 #define light_pixels_count 5.0
 #define meta_pixels_count 5.0
@@ -111,6 +112,26 @@ vec3 get_specular_color(vec3 map_specular, float light_specular, vec3 light_colo
 
     return light_color * light_specular * specular_value;
 }
+
+vec3 colInterp(vec3 bcol, vec3 ecol, vec3 inCol){
+    float st = 1.0 / SHADES;
+    float avg = inCol.x * SHADES; 
+    float band = ceil(avg) / SHADES;
+    band = max(0.0, band - st);
+    return mix(bcol, ecol, band);
+}
+
+vec3 palette(vec3 inCol){
+        vec3 mcol = vec3(0.28235294117, 0.07450980392, 0.29019607843);
+        vec3 bcol = vec3(0.07843137254, 0.01960784313, 0.1294117647);
+        //vec3 mcol = vec3(1, 0, 0);
+        //vec3 bcol = vec3(0, 0, 1);
+        return colInterp(bcol, mcol, inCol);
+}
+
+vec3 colorer(vec3 p){ 
+    return palette(p);
+} 
 
 void main() {
 
@@ -311,7 +332,7 @@ void main() {
     color = color + specular_map_color.x * specular_color;
     //color = mix(color, fog_color.rgb, fog_color.a);
 
-    gl_FragColor = vec4(color, texture_color.a);
+    gl_FragColor = vec4(colorer(color), texture_color.a);
 
     //
     // Debug
