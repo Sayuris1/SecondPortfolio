@@ -26,9 +26,6 @@ function update(self, dt)
 
 		local q = vmath.slerp(0.15, go.get_world_rotation(self.rendy_url), vmath.conj(vmath.quat_matrix4(matrix)))
 		go.set_rotation(q, self.rendy_url)
-
-		pprint(vmath.quat_to_euler(go.get_world_rotation()))
-		pprint(go.get_world_position())
 	end
 end
 

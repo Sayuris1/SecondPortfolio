@@ -36,7 +36,7 @@ embedded_components {
   "name: \"{{NAME}}\"\n"
   "materials {\n"
   "  name: \"default\"\n"
-  "  material: \"/materials/model.material\"\n"
+  "  material: \"/materials/arrow.material\"\n"
   "  textures {\n"
   "    sampler: \"DATA_TEXTURE\"\n"
   "    texture: \"/illumination/textures/data.png\"\n"
@@ -65,54 +65,5 @@ embedded_components {
   rotation {
     x: 0.70710677
     w: 0.70710677
-  }
-}
-embedded_components {
-  id: "sprite_outline"
-  type: "sprite"
-  data: "default_animation: \"arrow_outline\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
-  "textures {\n"
-  "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/textures/main_atlas.atlas\"\n"
-  "}\n"
-  ""
-  position {
-    x: -0.015
-    y: -0.032
-  }
-  scale {
-    x: 5.3E-4
-    y: 6.8E-4
-    z: 7.0E-4
-  }
-}
-embedded_components {
-  id: "sprite_fill"
-  type: "sprite"
-  data: "default_animation: \"arrow\"\n"
-  "material: \"/assets/models/arrow/arrow_fill.material\"\n"
-  "size {\n"
-  "  x: 1200.0\n"
-  "  y: 1200.0\n"
-  "}\n"
-  "textures {\n"
-  "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/textures/main_atlas.atlas\"\n"
-  "}\n"
-  "textures {\n"
-  "  sampler: \"tex0\"\n"
-  "  texture: \"/assets/textures/noise.atlas\"\n"
-  "}\n"
-  ""
-  position {
-    x: -0.015
-    y: -0.032
-    z: 0.1
-  }
-  scale {
-    x: 5.3E-4
-    y: 6.8E-4
-    z: 7.0E-4
   }
 }

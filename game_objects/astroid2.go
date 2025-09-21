@@ -5,7 +5,7 @@ embedded_components {
   "name: \"{{NAME}}\"\n"
   "materials {\n"
   "  name: \"wall-stone-5.003\"\n"
-  "  material: \"/assets/models/astroids/astroid.material\"\n"
+  "  material: \"/materials/astroid.material\"\n"
   "}\n"
   ""
 }

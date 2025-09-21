@@ -13,6 +13,5 @@ function init(self)
 		local scale = math.random(self.scale.x, self.scale.y)
 		local random_vec = vmath.vector3(random_float(self.spawn_area_start.x, self.spawn_area_end.x), random_float(self.spawn_area_start.y, self.spawn_area_end.y), random_float(self.spawn_area_start.z, self.spawn_area_end.z))
 		local astreid = factory.create(id, random_vec, nil, nil, vmath.vector3(scale))
-		pprint(go.get_world_position(astreid))
 	end
 end

@@ -3,8 +3,8 @@ instances {
   id: "arrow"
   prototype: "/game_objects/arrow.go"
   position {
-    y: 3.0
-    z: -15.0
+    x: 1.0
+    z: -5.0
   }
 }
 instances {

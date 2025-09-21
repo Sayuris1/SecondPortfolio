@@ -1,7 +1,7 @@
 animations {
   id: "arrow"
   images {
-    image: "/assets/models/sphere/Noise.png"
+    image: "/assets/textures/Noise.png"
   }
   playback: PLAYBACK_LOOP_FORWARD
 }
