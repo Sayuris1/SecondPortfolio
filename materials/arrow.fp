@@ -338,7 +338,10 @@ void main() {
     //color = mix(color, fog_color.rgb, fog_color.a);
 
     float y_pos = step(-local_position.z + 0.45, u_fill.x);
-    gl_FragColor = vec4(colorer(color) * y_pos, texture_color.a);
+    if(y_pos <= 0)
+        gl_FragColor = vec4(vec3(1.0), texture_color.a);
+    else
+        gl_FragColor = vec4(colorer(color) * y_pos * 5, texture_color.a);
 
     //
     // Debug
