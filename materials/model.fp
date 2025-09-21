@@ -1,10 +1,10 @@
+#version 140
 //
 // model.fp
 // github.com/astrochili/defold-illumination
 // Copyright (c) 2022 Roman Silin
 // MIT license. See LICENSE for details.
 //
-
 #define SHADES 4
 #define pi 3.1415926535897932384626433832795
 #define light_pixels_count 5.0
@@ -21,7 +21,10 @@ uniform lowp sampler2D LIGHT_TEXTURE;
 uniform lowp sampler2D SPECULAR_TEXTURE;
 uniform lowp sampler2D NORMAL_TEXTURE;
 
-uniform highp vec4 surface;
+uniform fs_uniforms
+{
+    highp vec4 surface;
+};
 
 varying highp vec3 camera_position;
 varying highp vec3 world_position;
@@ -34,7 +37,7 @@ vec4 get_data(float index) {
     float x = mod(index, texture_size) / texture_size;
     float y = float(index / texture_size) / float(texture_size);
 
-    return texture2D(DATA_TEXTURE, vec2(x, y));
+    return texture(DATA_TEXTURE, vec2(x, y));
 }
 
 float data_to_axis(vec3 data) {
@@ -71,7 +74,7 @@ mat3 get_tbn_mtx(vec3 normal, vec3 view_direction, vec2 texture_coord) {
 vec3 get_perturb_normal(vec3 world_normal, vec3 view_direction, vec2 texture_coord) {
     mat3 tbn_mtx = get_tbn_mtx(world_normal, -view_direction, texture_coord);
 
-    vec3 normal_map_color = texture2D(NORMAL_TEXTURE, texture_coord).xyz;
+    vec3 normal_map_color = texture(NORMAL_TEXTURE, texture_coord).xyz;
     vec3 perturb_normal = normal_map_color * (255.0 / 127.0) - vec3(128.0 / 127.0);
 
     if (surface.z > 0.5) {
@@ -138,7 +141,7 @@ void main() {
     //
     // Texture
 
-    vec4 texture_color = texture2D(DIFFUSE_TEXTURE, texture_coord);
+    vec4 texture_color = texture(DIFFUSE_TEXTURE, texture_coord);
 
     if (texture_color.a == 0.0) {
        discard;
@@ -197,7 +200,7 @@ void main() {
     vec3 view_direction = normalize(camera_position - world_position);
 
     vec3 surface_normal = world_normal;
-    vec3 normal_map_color = texture2D(NORMAL_TEXTURE, texture_coord).xyz;
+    vec3 normal_map_color = texture(NORMAL_TEXTURE, texture_coord).xyz;
 
     if (normal_map_color.r > 0.0 && normal_map_color != flat_normal) {
         surface_normal = get_perturb_normal(world_normal, view_direction, texture_coord);
@@ -207,7 +210,7 @@ void main() {
     //
     // Light Map
 
-    vec3 light_map_color = texture2D(LIGHT_TEXTURE, surface.y > 0.5 ? light_map_coord : texture_coord).xyz;
+    vec3 light_map_color = texture(LIGHT_TEXTURE, surface.y > 0.5 ? light_map_coord : texture_coord).xyz;
     vec3 illuminance_color = light_map_color;
 
 
@@ -215,7 +218,7 @@ void main() {
     // Specular Map
 
     vec3 specular_color = vec3(0.0);
-    vec3 specular_map_color = texture2D(SPECULAR_TEXTURE, texture_coord).xyz;
+    vec3 specular_map_color = texture(SPECULAR_TEXTURE, texture_coord).xyz;
 
 
     //

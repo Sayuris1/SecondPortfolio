@@ -1,0 +1,19 @@
+name: "start"
+instances {
+  id: "triangle"
+  prototype: "/game_objects/triangle.go"
+  position {
+    z: -2.0
+  }
+  rotation {
+    x: 4.3297803E-17
+    y: 0.70710677
+    z: -0.70710677
+    w: 4.3297803E-17
+  }
+}
+collection_instances {
+  id: "rendy"
+  collection: "/game_objects/rendy.collection"
+}
+scale_along_z: 0

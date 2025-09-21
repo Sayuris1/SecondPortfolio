@@ -1,3 +1,4 @@
+#version 140
 //
 // model.vp
 // github.com/astrochili/defold-illumination
@@ -10,9 +11,12 @@ attribute mediump vec2 texcoord0;
 attribute mediump vec2 texcoord1;
 attribute mediump vec3 normal;
 
-uniform mediump mat4 mtx_world;
-uniform mediump mat4 mtx_view;
-uniform mediump mat4 mtx_proj;
+uniform vs_uniforms
+{
+    mediump mat4 mtx_world;
+    mediump mat4 mtx_view;
+    mediump mat4 mtx_proj;
+};
 
 varying highp vec3 camera_position;
 varying highp vec3 world_position;
