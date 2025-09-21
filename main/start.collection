@@ -81,10 +81,23 @@ instances {
 }
 instances {
   id: "planet"
-  prototype: "/assets/models/planet/planet.go"
+  prototype: "/game_objects/planet.go"
   position {
     y: -3.0
     z: -20.0
+  }
+}
+instances {
+  id: "triangle"
+  prototype: "/game_objects/triangle.go"
+  position {
+    z: -2.0
+  }
+  rotation {
+    x: 4.3297803E-17
+    y: 0.70710677
+    z: -0.70710677
+    w: 4.3297803E-17
   }
 }
 collection_instances {

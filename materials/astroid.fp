@@ -51,5 +51,6 @@ void main()
 
     float time = (sin(u_time.x) + 1.4) * 2;
     out_fragColor = vec4(color(diff_light + time), 1.0);
+    //out_fragColor = vec4(color(diff_light + time), 1.0);
 }
 

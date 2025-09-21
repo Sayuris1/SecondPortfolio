@@ -332,7 +332,7 @@ void main() {
     color = color + specular_map_color.x * specular_color;
     //color = mix(color, fog_color.rgb, fog_color.a);
 
-    gl_FragColor = vec4(colorer(color), texture_color.a);
+    gl_FragColor = vec4(colorer(color) * 20, texture_color.a);
 
     //
     // Debug
