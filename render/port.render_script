@@ -292,8 +292,8 @@ function init(self)
                            height = render.get_window_height(),
                            min_filter = graphics.TEXTURE_FILTER_LINEAR,
                            mag_filter = graphics.TEXTURE_FILTER_LINEAR,
-                           u_wrap = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE,
-                           v_wrap = graphics.TEXTURE_WRAP_CLAMP_TO_EDGE }
+                           u_wrap = graphics.TEXTURE_WRAP_REPEAT,
+                           v_wrap = graphics.TEXTURE_WRAP_REPEAT }
 
 	self.post_render_target1 = render.render_target("post1", {[graphics.BUFFER_TYPE_COLOR0_BIT] = color_params})
 
@@ -303,6 +303,7 @@ end
 
 local time = 0
 function update(self, dt)
+	local window_size_x, window_size_y = render.get_window_width(), render.get_window_height()
 	time = time + dt;
 	-- Enable writing to the depth and stencil buffers, and set the default blend function.
 	-- Writing to the color buffer is always enabled.
@@ -321,8 +322,6 @@ function update(self, dt)
 			activate_camera(camera)
 			local time_constant_buffer = render.constant_buffer()
 			time_constant_buffer.u_time = vmath.vector4(time, 0.0, 0.0, 0.0);
-
-			render.set_render_target_size(self.post_render_target1, render.get_window_width(), render.get_window_height())
 
 			render.set_render_target(self.post_render_target1)
 			render.clear(clear_buffers)
@@ -356,9 +355,8 @@ function update(self, dt)
 			render.draw_debug3d()
 			render.disable_state(graphics.STATE_BLEND)
 
-
- 			render.set_render_target_size(self.bloom_render_target1, render.get_window_width() * 0.25, render.get_window_height() * 0.25)
-			render.set_viewport(0, 0, render.get_window_width() * 0.25, render.get_window_height() * 0.25)
+  			render.set_render_target_size(self.bloom_render_target1, window_size_x * 0.5, window_size_y * 0.5)
+			render.set_viewport(0, 3, window_size_x * 0.5, window_size_y * 0.5)
 			render.set_render_target(self.bloom_render_target1)
  			render.enable_texture(0, self.post_render_target1)
 			render.enable_material("bloom_sperate")
@@ -367,33 +365,24 @@ function update(self, dt)
 			render.disable_texture(0)
 
 
-			local blur_constant_buffer1= render.constant_buffer()
-			blur_constant_buffer1.u_res = vmath.vector4(render.get_window_width() * 0.25, render.get_window_width() * 0.25, 2.0, 0.0);
+			local blur_constant_buffer= render.constant_buffer()
+			blur_constant_buffer.u_res = vmath.vector4(window_size_x, window_size_y, 1.0, 0.0);
 
-			local blur_constant_buffer2= render.constant_buffer()
-			blur_constant_buffer2.u_res = vmath.vector4(render.get_window_width() * 0.25, render.get_window_width() * 0.25, 1.0, 0.0);
-
- 			render.set_render_target_size(self.bloom_render_target2, render.get_window_width() * 0.25, render.get_window_height() * 0.25)
+  			render.set_render_target_size(self.bloom_render_target2, window_size_x * 0.5, window_size_y * 0.5)
+			render.set_viewport(0, 0, window_size_x * 0.5, window_size_y * 0.5)
 			render.set_render_target(self.bloom_render_target2)
- 			render.enable_texture(0, self.bloom_render_target1)
+			render.enable_texture(0, self.bloom_render_target1)
 			render.enable_material("blur")
-			render.draw(predicates.post.object, {constants = blur_constant_buffer1})
-			render.disable_material()
-			render.disable_texture(0)
-
-			render.set_render_target(self.bloom_render_target1)
- 			render.enable_texture(0, self.bloom_render_target2)
-			render.enable_material("blur")
-			render.draw(predicates.post.object, {constants = blur_constant_buffer2})
+			render.draw(predicates.post.object, {constants = blur_constant_buffer})
 			render.disable_material()
 			render.disable_texture(0)
 
 			-- POST
 			render.set_render_target(render.RENDER_TARGET_DEFAULT)
-			render.set_viewport(0, 0, render.get_window_width(), render.get_window_height())
+			render.set_viewport(0, 0, window_size_x, window_size_y)
 
  			render.enable_texture("tex0", self.post_render_target1)
- 			render.enable_texture("tex1", self.bloom_render_target1)
+ 			render.enable_texture("tex1", self.bloom_render_target2)
 			render.enable_material("hdr")
 			render.draw(predicates.post.object)
 			render.disable_material()

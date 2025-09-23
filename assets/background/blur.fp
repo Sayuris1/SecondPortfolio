@@ -1,4 +1,5 @@
 #version 140
+#define pi 3.1415926535897932384626433832795
 
 in mediump vec2 var_texcoord0;
 
@@ -7,39 +8,30 @@ out vec4 out_fragColor;
 uniform mediump sampler2D tex0;
 uniform fs_uniforms
 {
-    uniform mediump vec4 u_time;
     uniform mediump vec4 u_res;
 };
 
 void main()
 {
-    float ResS = u_res.x;
-	float ResT = u_res.y;
+	float Directions = 16.0; // BLUR DIRECTIONS (Default 16.0 - More is better but slower)
+	float Quality = 10.0; // BLUR QUALITY (Default 4.0 - More is better but slower)
+	float Size = 16.0; // BLUR SIZE (Radius)
 
-    vec2 distance = u_res.zw;
+	vec2 Radius = Size/u_res.xy;
 
-	vec2 stp0 = vec2(1.0/ResS, 0.0);
-	vec2 st0p = vec2(0.0, 1.0/ResT);
-	vec2 stpp = vec2(1.0/ResS, 1.0/ResT);
-	vec2 stpm = vec2(1.0/ResS, -1.0/ResT);
+	// Normalized pixel coordinates (from 0 to 1)
+	vec2 uv = var_texcoord0.xy;
+	// Pixel colour
+	vec4 Color = texture(tex0, uv);
 
-	vec4 i00 = texture(tex0, var_texcoord0);
-	vec4 im1m1 = texture(tex0, var_texcoord0-stpp*distance.x);
-	vec4 ip1p1 = texture(tex0, var_texcoord0+stpp*distance.x);
-	vec4 im1p1 = texture(tex0, var_texcoord0-stpm*distance.x);
-	vec4 ip1m1 = texture(tex0, var_texcoord0+stpm*distance.x);
-	vec4 im10 = texture(tex0, var_texcoord0-stp0*distance.x);
-	vec4 ip10 = texture(tex0, var_texcoord0+stp0*distance.x);
-	vec4 i0m1 = texture(tex0, var_texcoord0-st0p*distance.x);
-	vec4 i0p1 = texture(tex0, var_texcoord0+st0p*distance.x);
+	for( float d=0.0; d<pi; d+=pi/Directions)
+	{
+		for(float i=1.0/Quality; i<=1.0; i+=1.0/Quality)
+		{
+			Color += texture(tex0, uv+vec2(cos(d),sin(d))*Radius*i);		
+		}
+	}
 
-	vec4 target = vec4 (0.0, 0.0, 0.0, 0.0);
-	target += 1.0*(im1m1+ip1m1+ip1p1+im1p1); 
-	target += 2.0*(im10+ip10+i0p1);
-	target += 4.0*(i00);
-	target /= 16.0;
-
-	target.rgb *= 2;
-
-    out_fragColor = target;
+	Color /= Quality * Directions - 15.0;
+	gl_FragColor =  Color;
 }

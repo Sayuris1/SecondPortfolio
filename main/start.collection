@@ -173,7 +173,4 @@ embedded_instances {
   "\"\n"
   "}\n"
   ""
-  position {
-    x: 3.0
-  }
 }
