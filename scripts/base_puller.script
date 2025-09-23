@@ -54,6 +54,7 @@ function on_message(self, message_id, message, sender)
 
 			tweener.tween(tweener.incirc, 0, 1, 1, function (value, is_final_call)
 				START_STATE_END = value;
+				go.set("/blocker#model", "tint", vmath.vector4(0, 0, 0, 1 - value))
 
 				if is_final_call then
 					go.delete(".", true)

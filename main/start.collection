@@ -174,3 +174,29 @@ embedded_instances {
   "}\n"
   ""
 }
+embedded_instances {
+  id: "blocker"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad_2x2.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/blocker.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"tex0\\\"\\n"
+  "    texture: \\\"/hyper_trails/textures/white.png\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "  position {\n"
+  "    z: -15.1\n"
+  "  }\n"
+  "}\n"
+  ""
+  scale3 {
+    x: 100.0
+    y: 100.0
+  }
+}
