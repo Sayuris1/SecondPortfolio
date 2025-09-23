@@ -5,7 +5,7 @@ embedded_components {
   "name: \"{{NAME}}\"\n"
   "materials {\n"
   "  name: \"TC_metal\"\n"
-  "  material: \"/materials/model.material\"\n"
+  "  material: \"/materials/triangle.material\"\n"
   "  textures {\n"
   "    sampler: \"DATA_TEXTURE\"\n"
   "    texture: \"/illumination/textures/data.png\"\n"
