@@ -52,9 +52,9 @@ function on_message(self, message_id, message, sender)
 
 		if START_STATE_END == 0 then
 			if Current_Particle == 500 then
-				msg.post("/start_guide#gui", "base_full")
+				msg.post("/start_guide/start_guide#gui", "base_full")
 			else
-				msg.post("/start_guide#gui", "particle_collected")
+				msg.post("/start_guide/start_guide#gui", "particle_collected")
 			end
 		end
 	elseif create_particle_message then

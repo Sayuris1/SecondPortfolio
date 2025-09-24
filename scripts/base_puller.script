@@ -9,6 +9,7 @@ function init(self)
 	base_url = msg.url("/rendy/base")
 
 	model_url = msg.url()
+	model_url.path = "/start_guide/model_go"
 	model_url.fragment = "model"
 
 	self.particle_count = 0
@@ -42,7 +43,7 @@ function on_message(self, message_id, message, sender)
 		self.particle_count = math.min(390, self.particle_count + 1)
 		if self.particle_count >= 380 then
 			if START_STATE_END == 0 then
-				msg.post("/start_guide#gui", "arrow_full")
+				msg.post("/start_guide/start_guide#gui", "arrow_full")
 			end
 		end
 
@@ -62,8 +63,8 @@ function on_message(self, message_id, message, sender)
 			end)
 		end)
 
-		go.animate(".", "euler.y", go.PLAYBACK_ONCE_FORWARD, 360 * 8, go.EASING_INCIRC, 3, 0, function ()
-			msg.post("/start_guide#gui", "start_state_end")
+		go.animate("/start_guide/model_go", "euler.y", go.PLAYBACK_ONCE_FORWARD, 360 * 8, go.EASING_INCIRC, 3, 0, function ()
+			msg.post("/start_guide/start_guide#gui", "start_state_end")
 		end)
 	end
 end

@@ -1,13 +1,5 @@
 name: "start"
 instances {
-  id: "arrow"
-  prototype: "/game_objects/arrow.go"
-  position {
-    y: 3.0
-    z: -15.0
-  }
-}
-instances {
   id: "illumination"
   prototype: "/illumination/illumination.go"
   position {
@@ -87,37 +79,15 @@ instances {
     z: -20.0
   }
 }
-instances {
-  id: "triangle"
-  prototype: "/game_objects/triangle.go"
-  position {
-    z: -2.0
-  }
-  rotation {
-    x: 4.3297803E-17
-    y: 0.70710677
-    z: -0.70710677
-    w: 4.3297803E-17
-  }
-}
 collection_instances {
   id: "rendy"
   collection: "/game_objects/rendy.collection"
 }
-scale_along_z: 0
-embedded_instances {
+collection_instances {
   id: "start_guide"
-  children: "arrow"
-  data: "components {\n"
-  "  id: \"start_controller\"\n"
-  "  component: \"/scripts/start_controller.script\"\n"
-  "}\n"
-  "components {\n"
-  "  id: \"gui\"\n"
-  "  component: \"/game_objects/gui.gui\"\n"
-  "}\n"
-  ""
+  collection: "/game_objects/start_guide.collection"
 }
+scale_along_z: 0
 embedded_instances {
   id: "cursor"
   data: "components {\n"
