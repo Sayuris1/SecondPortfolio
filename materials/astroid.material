@@ -2,7 +2,6 @@ name: "astroid"
 tags: "model"
 vertex_program: "/materials/astroid.vp"
 fragment_program: "/materials/astroid.fp"
-vertex_space: VERTEX_SPACE_LOCAL
 vertex_constants {
   name: "mtx_worldview"
   type: CONSTANT_TYPE_WORLDVIEW

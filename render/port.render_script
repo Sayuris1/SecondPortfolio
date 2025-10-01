@@ -320,6 +320,7 @@ function update(self, dt)
 		-- Only render this camera if it is active.
 		if camera.active then
 			activate_camera(camera)
+
 			local time_constant_buffer = render.constant_buffer()
 			time_constant_buffer.u_time = vmath.vector4(time, 0.0, 0.0, 0.0);
 

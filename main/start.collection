@@ -6,12 +6,12 @@ instances {
     id: "astroid_creator"
     properties {
       id: "spawn_area_start"
-      value: "-10.0, -3.0, -50.0"
+      value: "-100.0, -10.0, -150.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
       id: "spawn_area_end"
-      value: "50.0, 50.0, -16.0"
+      value: "200.0, 150.0, -16.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
@@ -21,7 +21,7 @@ instances {
     }
     properties {
       id: "count"
-      value: "100.0"
+      value: "960.0"
       type: PROPERTY_TYPE_NUMBER
     }
   }
