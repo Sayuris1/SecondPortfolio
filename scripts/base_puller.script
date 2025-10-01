@@ -51,9 +51,9 @@ function on_message(self, message_id, message, sender)
 		self.delete_mod = 1;
 
 		timer.delay(2, false, function ()
-			msg.post("/camera_controller#camera_controller", "start_state_move")
+			msg.post("/rendy/camera#camera_controller", "start_state_move")
 
-			tweener.tween(tweener.incirc, 0, 1, 1, function (value, is_final_call)
+			tweener.tween(tweener.linear, 0, 1, 3, function (value, is_final_call)
 				START_STATE_END = value;
 				go.set("/blocker#model", "tint", vmath.vector4(0, 0, 0, 1 - value))
 
@@ -63,7 +63,7 @@ function on_message(self, message_id, message, sender)
 			end)
 		end)
 
-		go.animate("/start_guide/model_go", "euler.y", go.PLAYBACK_ONCE_FORWARD, 360 * 8, go.EASING_INCIRC, 3, 0, function ()
+		go.animate("/start_guide/model_go", "euler.y", go.PLAYBACK_ONCE_FORWARD, 360 * 8, go.EASING_INCIRC, 5, 0, function ()
 			msg.post("/start_guide/start_guide#gui", "start_state_end")
 		end)
 	end

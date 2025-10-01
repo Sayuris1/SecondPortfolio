@@ -1,7 +1,32 @@
-function init(self)
-    self.last_pos = go.get_world_position()
+local bz = require("scripts.bzLibrary")
 
-	self.rendy_url = msg.url("/rendy")
+--- Creates a rotation with the specified forward and upwards directions.
+-- @param forward vector3 The forward direction.
+-- @param upwards vector3|nil The upwards direction.
+-- @return quat The rotation.
+local function quat_look_rotation(forward, upwards)
+    -- If no upwards direction is specified, use the default (0, 1, 0)
+    upwards = upwards or vmath.vector3(0, 1, 0)
+
+    -- No zero vectors
+    if vmath.length_sqr(forward) < 0.0000000001 or vmath.length_sqr(upwards) < 0.0000000001 then
+        return vmath.quat()
+    end
+
+--[[     -- Handle alignment with up direction
+	pprint(vmath.dot(forward, upwards))
+    if math.abs(vmath.dot(forward, upwards)) > 0.9999999 then
+        return vmath.quat_from_to(vmath.vector3(0, 0, 1), forward)
+    end ]]
+
+    -- Create a rotation matrix from the forward and upwards vectors
+    local matrix = vmath.matrix4_look_at(vmath.vector3(0), forward, upwards)
+
+    -- Convert the matrix to a quaternion and return it
+    return vmath.conj(vmath.quat_matrix4(matrix))
+end
+
+function init(self)
 end
 
 function final(self)
@@ -11,22 +36,7 @@ function final(self)
 end
 
 function update(self, dt)
-    local current_pos = go.get_world_position()
-	if self.last_pos ~= current_pos then
-		local upwards = vmath.vector3(0, 1, 0)
-		local forward = current_pos - self.last_pos
-
-		if vmath.length_sqr(forward) < 0.0000000001 or vmath.length_sqr(upwards) < 0.0000000001 then
-			return vmath.quat()
-		elseif math.abs(vmath.dot(forward, upwards)) > 0.9999999 then
-			return vmath.quat_from_to(vmath.vector3(0, 0, 1), forward)
-		end
-
-		local matrix = vmath.matrix4_look_at(vmath.vector3(0), forward, upwards)
-
-		local q = vmath.slerp(0.15, go.get_world_rotation(self.rendy_url), vmath.conj(vmath.quat_matrix4(matrix)))
-		go.set_rotation(q, self.rendy_url)
-	end
+	go.set_rotation(quat_look_rotation(go.get_world_position("/planet") - go.get_world_position("/rendy/camera")), "/rendy/illumination")
 end
 
 function fixed_update(self, dt)
@@ -38,8 +48,52 @@ function fixed_update(self, dt)
 	-- Remove this function if not needed
 end
 
-local start_state_move = hash("start_state_move")
 function on_message(self, message_id, message, sender)
+	if message_id == hash("start_state_move") then
+		bz.animate({
+			obj = "/rendy/operator",
+			duration = 10.0,
+
+			path={
+				{x = -10, y = 5, z = -20},
+				{x = 50, y = 20, z = 30},
+				{x = 52, y = 20, z = 60},
+				{x = 160, y = 100, z = -70},
+			},
+
+			easing = TYPE_OUTQUAD,
+		})
+
+		bz.animateSequence({
+			obj = "/rendy/camera",
+			is_rotate = true;
+
+			segments={
+				{ duration=3.5, path={
+					{x = 37, y = 0, z = 0},
+					{x = 30, y = -50, z = 0}, },
+
+					easing = TYPE_OUTQUAD,
+				},
+
+
+				{ duration=6.5, path={
+					{y = 50} },
+
+					easing = TYPE_INQUAD,
+				} },
+		})
+
+	elseif message_id == hash("motion_finished") then
+--[[ 		local checkpoint1 = msg.url(nil, "/checkpoint1", nil)
+		if message.checkpoint == checkpoint1 then
+			local sequence = {
+				msg.url("/checkpoint2"),
+			}
+
+			msg.post("/rendy/operator#operator", hash("follow_sequence"), sequence)
+		end ]]
+	end
 end
 
 function on_input(self, action_id, action)

@@ -342,7 +342,7 @@ void main() {
     if(y_pos <= 0)
         gl_FragColor = vec4(vec3(1.0), texture_color.a);
     else
-        gl_FragColor = vec4(colorer(color) * y_pos * 5, texture_color.a);
+        gl_FragColor = vec4(colorer(color) * y_pos * 10, texture_color.a);
 
     //
     // Debug

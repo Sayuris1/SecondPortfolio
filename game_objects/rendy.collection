@@ -51,10 +51,59 @@ instances {
     }
   }
 }
+instances {
+  id: "illumination"
+  prototype: "/illumination/illumination.go"
+  rotation {
+    x: 0.18301271
+    y: -0.6830127
+    z: 0.18301271
+    w: 0.6830127
+  }
+  component_properties {
+    id: "illumination"
+    properties {
+      id: "ambient_color"
+      value: "0.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "ambient_level"
+      value: "0.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "sunlight_color"
+      value: "1.0, 1.0, 1.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "sunlight_brightness"
+      value: "0.9"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "sunlight_specular"
+      value: "0.5"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "fog"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "fog_is_radial"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "operator"
   children: "camera"
+  children: "illumination"
   data: "components {\n"
   "  id: \"operator\"\n"
   "  component: \"/operator/operator/operator.script\"\n"
@@ -68,6 +117,25 @@ embedded_instances {
   "    value: \"false\"\n"
   "    type: PROPERTY_TYPE_BOOLEAN\n"
   "  }\n"
+  "  properties {\n"
+  "    id: \"minimum\"\n"
+  "    value: \"-89.0, -360.0, 0.0\"\n"
+  "    type: PROPERTY_TYPE_VECTOR3\n"
+  "  }\n"
+  "  properties {\n"
+  "    id: \"maximum\"\n"
+  "    value: \"89.0, 360.0, 30.0\"\n"
+  "    type: PROPERTY_TYPE_VECTOR3\n"
+  "  }\n"
+  "  properties {\n"
+  "    id: \"collision_check\"\n"
+  "    value: \"false\"\n"
+  "    type: PROPERTY_TYPE_BOOLEAN\n"
+  "  }\n"
+  "}\n"
+  "components {\n"
+  "  id: \"bzController\"\n"
+  "  component: \"/scripts/bzController.script\"\n"
   "}\n"
   ""
 }
@@ -79,6 +147,10 @@ embedded_instances {
   data: "components {\n"
   "  id: \"mesh\"\n"
   "  component: \"/operator/assets/models/camera.mesh\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"camera_controller\"\n"
+  "  component: \"/scripts/camera_controller.script\"\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"camera\"\n"

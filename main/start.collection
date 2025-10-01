@@ -1,62 +1,17 @@
 name: "start"
 instances {
-  id: "illumination"
-  prototype: "/illumination/illumination.go"
-  position {
-    z: 1.0
-  }
-  component_properties {
-    id: "illumination"
-    properties {
-      id: "ambient_color"
-      value: "0.0, 0.0, 0.0"
-      type: PROPERTY_TYPE_VECTOR3
-    }
-    properties {
-      id: "ambient_level"
-      value: "0.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "sunlight_color"
-      value: "1.0, 1.0, 1.0"
-      type: PROPERTY_TYPE_VECTOR3
-    }
-    properties {
-      id: "sunlight_brightness"
-      value: "10.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "sunlight_specular"
-      value: "0.7"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "fog"
-      value: "false"
-      type: PROPERTY_TYPE_BOOLEAN
-    }
-    properties {
-      id: "fog_is_radial"
-      value: "false"
-      type: PROPERTY_TYPE_BOOLEAN
-    }
-  }
-}
-instances {
   id: "astroid_creator"
   prototype: "/game_objects/astroid_creator.go"
   component_properties {
     id: "astroid_creator"
     properties {
       id: "spawn_area_start"
-      value: "-10.0, -10.0, -50.0"
+      value: "-10.0, -3.0, -50.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
       id: "spawn_area_end"
-      value: "10.0, 10.0, -20.0"
+      value: "50.0, 50.0, -16.0"
       type: PROPERTY_TYPE_VECTOR3
     }
     properties {
@@ -75,8 +30,120 @@ instances {
   id: "planet"
   prototype: "/game_objects/planet.go"
   position {
-    y: -3.0
-    z: -20.0
+    x: 70.0
+    y: 43.0
+    z: -32.0
+  }
+  rotation {
+    y: 0.9781476
+    w: 0.20791169
+  }
+  scale3 {
+    x: 10.0
+    y: 10.0
+    z: 10.0
+  }
+}
+instances {
+  id: "checkpoint1"
+  prototype: "/operator/checkpoint/checkpoint.go"
+  position {
+    y: 3.0
+    z: -10.0
+  }
+  rotation {
+    x: 0.31730467
+    w: 0.94832367
+  }
+  component_properties {
+    id: "checkpoint"
+    properties {
+      id: "speed"
+      value: "5.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "inout"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+}
+instances {
+  id: "checkpoint2"
+  prototype: "/operator/checkpoint/checkpoint.go"
+  position {
+    x: 5.0
+    y: 3.0
+    z: -15.0
+  }
+  rotation {
+    x: 0.18301271
+    y: -0.6830127
+    z: 0.18301271
+    w: 0.6830127
+  }
+  component_properties {
+    id: "checkpoint"
+    properties {
+      id: "speed"
+      value: "5.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "inout"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+}
+instances {
+  id: "light_spot"
+  prototype: "/illumination/light_spot.go"
+  position {
+    y: 2.0
+    z: -7.0
+  }
+  component_properties {
+    id: "light"
+    properties {
+      id: "brightness"
+      value: "10.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "radius"
+      value: "50.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "specular"
+      value: "0.7"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "cutoff"
+      value: "10.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+  }
+}
+instances {
+  id: "planet1"
+  prototype: "/game_objects/planet.go"
+  position {
+    x: -245.0
+    y: 69.0
+    z: -129.0
+  }
+  rotation {
+    y: 0.9781476
+    w: 0.20791169
+  }
+  scale3 {
+    x: 60.0
+    y: 60.0
+    z: 60.0
   }
 }
 collection_instances {
@@ -101,31 +168,6 @@ embedded_instances {
   data: "components {\n"
   "  id: \"debugger\"\n"
   "  component: \"/debugger/debugger.script\"\n"
-  "}\n"
-  ""
-}
-embedded_instances {
-  id: "particle_creator"
-  data: "components {\n"
-  "  id: \"particle_creator\"\n"
-  "  component: \"/scripts/particle_creator.script\"\n"
-  "  properties {\n"
-  "    id: \"spawn_spread_time\"\n"
-  "    value: \"0.2\"\n"
-  "    type: PROPERTY_TYPE_NUMBER\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"factory_base\"\n"
-  "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/game_objects/particle_base.go\\\"\\n"
-  "\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"factory_pull\"\n"
-  "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/game_objects/particle_pull.go\\\"\\n"
-  "\"\n"
   "}\n"
   ""
 }
@@ -160,13 +202,33 @@ embedded_instances {
   "  }\\n"
   "}\\n"
   "\"\n"
-  "  position {\n"
-  "    z: -15.1\n"
-  "  }\n"
   "}\n"
   ""
+  position {
+    z: -15.1
+  }
   scale3 {
     x: 100.0
     y: 100.0
   }
+}
+embedded_instances {
+  id: "particle_creator"
+  data: "components {\n"
+  "  id: \"particle_creator\"\n"
+  "  component: \"/scripts/particle_creator.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_base\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/game_objects/particle_base.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_pull\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/game_objects/particle_pull.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
 }

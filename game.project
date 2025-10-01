@@ -25,6 +25,7 @@ dependencies#3 = https://github.com/astrochili/defold-illumination/archive/refs/
 dependencies#4 = https://github.com/astrochili/defold-operator/archive/refs/tags/1.5.3.zip
 dependencies#5 = https://github.com/indiesoftby/defold-hyper-trails/archive/refs/tags/1.4.2.zip
 dependencies#6 = https://github.com/KorolevSoftware/defold-faststream/archive/refs/tags/beta_2.0.zip
+dependencies#7 = https://github.com/jbp4444/bzAnim/archive/refs/tags/v.1.2.zip
 
 [physics]
 use_fixed_timestep = 1
