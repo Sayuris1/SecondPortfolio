@@ -84,7 +84,7 @@ instances {
     }
     properties {
       id: "sunlight_specular"
-      value: "0.5"
+      value: "0.2"
       type: PROPERTY_TYPE_NUMBER
     }
     properties {

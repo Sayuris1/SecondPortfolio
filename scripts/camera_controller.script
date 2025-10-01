@@ -13,12 +13,6 @@ local function quat_look_rotation(forward, upwards)
         return vmath.quat()
     end
 
---[[     -- Handle alignment with up direction
-	pprint(vmath.dot(forward, upwards))
-    if math.abs(vmath.dot(forward, upwards)) > 0.9999999 then
-        return vmath.quat_from_to(vmath.vector3(0, 0, 1), forward)
-    end ]]
-
     -- Create a rotation matrix from the forward and upwards vectors
     local matrix = vmath.matrix4_look_at(vmath.vector3(0), forward, upwards)
 
@@ -50,6 +44,12 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("start_state_move") then
+		msg.post("/particle_creator", "release_input_focus")
+
+		timer.delay(10, false, function ()
+			msg.post("/particle_creator", "acquire_input_focus")
+		end)
+
 		bz.animate({
 			obj = "/rendy/operator",
 			duration = 10.0,
@@ -78,10 +78,12 @@ function on_message(self, message_id, message, sender)
 
 
 				{ duration=6.5, path={
-					{y = 50} },
+					{y = 5},
+					{x = 0, y = 0, z = 0}, },
 
 					easing = TYPE_INQUAD,
-				} },
+				},
+			}
 		})
 
 	elseif message_id == hash("motion_finished") then
