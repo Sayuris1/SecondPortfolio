@@ -46,7 +46,7 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("start_state_move") then
 		msg.post("/particle_creator", "release_input_focus")
 
-		timer.delay(10, false, function ()
+		timer.delay(7, false, function ()
 			msg.post("/particle_creator", "acquire_input_focus")
 		end)
 
@@ -61,7 +61,7 @@ function on_message(self, message_id, message, sender)
 				{x = 160, y = 100, z = -70},
 			},
 
-			easing = TYPE_OUTQUAD,
+			easing = TYPE_INOUTQUINT,
 		})
 
 		bz.animateSequence({
@@ -84,7 +84,7 @@ function on_message(self, message_id, message, sender)
 				},
 
 
-				{ duration= 2.75, path={
+				{ duration= 2.7, path={
 					{y = -70},
 					{x = 0, y = 0, z = 0}, },
 

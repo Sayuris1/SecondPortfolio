@@ -3,11 +3,11 @@ tags: "bg"
 vertex_program: "/assets/background/background.vp"
 fragment_program: "/assets/background/background.fp"
 vertex_constants {
-  name: "mtx_view_proj"
+  name: "view_proj"
   type: CONSTANT_TYPE_VIEWPROJ
 }
 vertex_constants {
-  name: "mtx_world"
+  name: "world"
   type: CONSTANT_TYPE_WORLD
 }
 fragment_constants {
@@ -19,19 +19,4 @@ fragment_constants {
     z: 1.0
     w: 1.0
   }
-}
-samplers {
-  name: "tex0"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_DEFAULT
-  filter_mag: FILTER_MODE_MAG_DEFAULT
-}
-samplers {
-  name: "cubemap"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_NEAREST
-  filter_mag: FILTER_MODE_MAG_NEAREST
-  max_anisotropy: 0.0
 }
