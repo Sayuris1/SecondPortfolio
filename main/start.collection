@@ -129,21 +129,63 @@ instances {
   }
 }
 instances {
-  id: "planet1"
-  prototype: "/game_objects/planet.go"
+  id: "triangle"
+  prototype: "/game_objects/triangle.go"
   position {
-    x: -245.0
-    y: 69.0
-    z: -129.0
+    x: 126.0
+    y: 74.0
+    z: -31.0
   }
   rotation {
-    y: 0.9781476
-    w: 0.20791169
+    x: 0.14161476
+    y: 0.81720495
+    z: -0.51064634
+    w: 0.226631
   }
   scale3 {
-    x: 60.0
-    y: 60.0
-    z: 60.0
+    x: 15.0
+    y: 15.0
+    z: 15.0
+  }
+}
+instances {
+  id: "triangle1"
+  prototype: "/game_objects/triangle.go"
+  position {
+    x: 114.0
+    y: 65.0
+    z: -18.0
+  }
+  rotation {
+    x: 0.36970362
+    y: 0.8233233
+    z: -0.42868742
+    w: 0.04104948
+  }
+  scale3 {
+    x: 15.0
+    y: 15.0
+    z: 15.0
+  }
+}
+instances {
+  id: "triangle2"
+  prototype: "/game_objects/triangle.go"
+  position {
+    x: 98.0
+    y: 55.0
+    z: -4.0
+  }
+  rotation {
+    x: 0.5660422
+    y: 0.7426945
+    z: -0.32346618
+    w: -0.15287502
+  }
+  scale3 {
+    x: 15.0
+    y: 15.0
+    z: 15.0
   }
 }
 collection_instances {

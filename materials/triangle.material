@@ -1,6 +1,6 @@
 name: "lit-model-triangle"
 tags: "model"
-vertex_program: "/materials/triangle.vp"
+vertex_program: "/builtins/materials/model.vp"
 fragment_program: "/materials/triangle.fp"
 vertex_space: VERTEX_SPACE_LOCAL
 vertex_constants {
@@ -12,48 +12,18 @@ vertex_constants {
   type: CONSTANT_TYPE_PROJECTION
 }
 vertex_constants {
-  name: "mtx_world"
-  type: CONSTANT_TYPE_WORLD
+  name: "mtx_worldview"
+  type: CONSTANT_TYPE_WORLDVIEW
+}
+vertex_constants {
+  name: "mtx_normal"
+  type: CONSTANT_TYPE_NORMAL
 }
 fragment_constants {
-  name: "surface"
+  name: "tint"
   type: CONSTANT_TYPE_USER
   value {
-    x: 2.0
+    x: 1.0
+    y: 1.0
   }
-}
-samplers {
-  name: "DIFFUSE_TEXTURE"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_LINEAR
-  filter_mag: FILTER_MODE_MAG_LINEAR
-}
-samplers {
-  name: "DATA_TEXTURE"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_NEAREST
-  filter_mag: FILTER_MODE_MAG_NEAREST
-}
-samplers {
-  name: "LIGHT_TEXTURE"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_LINEAR
-  filter_mag: FILTER_MODE_MAG_LINEAR
-}
-samplers {
-  name: "SPECULAR_TEXTURE"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_LINEAR
-  filter_mag: FILTER_MODE_MAG_LINEAR
-}
-samplers {
-  name: "NORMAL_TEXTURE"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_LINEAR
-  filter_mag: FILTER_MODE_MAG_LINEAR
 }

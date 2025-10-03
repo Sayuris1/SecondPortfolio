@@ -6,30 +6,15 @@ embedded_components {
   "materials {\n"
   "  name: \"TC_metal\"\n"
   "  material: \"/materials/triangle.material\"\n"
-  "  textures {\n"
-  "    sampler: \"DATA_TEXTURE\"\n"
-  "    texture: \"/illumination/textures/data.png\"\n"
-  "  }\n"
-  "  textures {\n"
-  "    sampler: \"DIFFUSE_TEXTURE\"\n"
-  "    texture: \"/hyper_trails/textures/white.png\"\n"
-  "  }\n"
-  "  textures {\n"
-  "    sampler: \"LIGHT_TEXTURE\"\n"
-  "    texture: \"/illumination/textures/empty.png\"\n"
-  "  }\n"
-  "  textures {\n"
-  "    sampler: \"NORMAL_TEXTURE\"\n"
-  "    texture: \"/illumination/textures/empty.png\"\n"
-  "  }\n"
-  "  textures {\n"
-  "    sampler: \"SPECULAR_TEXTURE\"\n"
-  "    texture: \"/hyper_trails/textures/white.png\"\n"
-  "  }\n"
   "}\n"
   "materials {\n"
   "  name: \"TC_light\"\n"
   "  material: \"/builtins/materials/model.material\"\n"
   "}\n"
   ""
+  position {
+    x: 0.0594
+    y: 0.027203
+    z: 0.013268
+  }
 }
