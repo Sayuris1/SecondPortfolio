@@ -47,12 +47,6 @@ float fbm( vec2 p )
 
 void main()
 {
-    // draw the image
-/*     vec3 colorBlack = vec3(0);
-    vec3 colorPink = vec3(0.07843137254, 0.01960784313, 0.1294117647);
-    vec3 layer1 = mix(colorBlack, colorPink, S(0.3, -.1, (tuv*Rot(radians(-5.))).x)); */
-    
-    vec3 col = vec3(u_time);
-    
-    out_fragColor = vec4(vec3(fbm(var_texcoord0.xy * 0.1)), 1.0) * vec4(0.07843137254, 0.01960784313, 0.1294117647, 1.0);
+    vec3 color = vec3(fbm(var_texcoord0.xy * 0.1)) * vec3(0.07843137254, 0.01960784313, 0.1294117647);
+    out_fragColor = vec4(color, 1);
 }
