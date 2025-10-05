@@ -16,5 +16,5 @@ uniform fs_uniforms
 
 void main() {
 
-    gl_FragColor = vec4(vec3(0.07843137254, 0.01960784313, 0.1294117647) * 50, 1);
+    gl_FragColor = vec4(vec3(0.07843137254, 0.01960784313, 0.1294117647) * 15, 1);
 }

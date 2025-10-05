@@ -12,6 +12,11 @@ components {
     type: PROPERTY_TYPE_NUMBER
   }
   properties {
+    id: "trail_tint_color"
+    value: "0.392157, 0.098039, 0.647059, 2.0"
+    type: PROPERTY_TYPE_VECTOR4
+  }
+  properties {
     id: "segment_length_max"
     value: "0.0"
     type: PROPERTY_TYPE_NUMBER
@@ -82,10 +87,13 @@ embedded_components {
   id: "sprite"
   type: "sprite"
   data: "default_animation: \"anim\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
+  "material: \"/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
   "  texture: \"/builtins/graphics/particle_blob.tilesource\"\n"
   "}\n"
   ""
+  position {
+    z: 0.001
+  }
 }

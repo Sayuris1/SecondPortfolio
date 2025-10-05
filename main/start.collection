@@ -274,3 +274,558 @@ embedded_instances {
   "}\n"
   ""
 }
+embedded_instances {
+  id: "3DText"
+  children: "Alp"
+  children: "Designer"
+  children: "Developer"
+  children: "Elgun"
+  data: ""
+  position {
+    x: -0.7
+    y: 2.5
+  }
+}
+embedded_instances {
+  id: "Alp"
+  children: "A"
+  children: "L"
+  children: "P"
+  data: ""
+  position {
+    x: 157.0
+    y: 100.0
+    z: -90.0
+  }
+}
+embedded_instances {
+  id: "A"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_a.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "L"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_l.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 0.8
+    y: -0.1
+  }
+}
+embedded_instances {
+  id: "P"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_p.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 1.7
+    y: 0.1
+  }
+}
+embedded_instances {
+  id: "Elgun"
+  children: "E"
+  children: "G"
+  children: "L1"
+  children: "N"
+  children: "U"
+  data: ""
+  position {
+    x: 160.7
+    y: 100.0
+    z: -90.0
+  }
+}
+embedded_instances {
+  id: "E"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_e.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "G"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_g.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 1.7
+    y: 0.02
+  }
+}
+embedded_instances {
+  id: "L1"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_l.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 0.7
+    y: -0.1
+  }
+}
+embedded_instances {
+  id: "N"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_n.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 3.8
+  }
+}
+embedded_instances {
+  id: "U"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_u.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 2.7
+  }
+}
+embedded_instances {
+  id: "Developer"
+  children: "D"
+  children: "E1"
+  children: "E2"
+  children: "E3"
+  children: "L2"
+  children: "O"
+  children: "P1"
+  children: "P2"
+  children: "V"
+  data: ""
+  position {
+    x: 155.7
+    y: 98.3
+    z: -90.0
+  }
+  scale3 {
+    x: 0.5
+    y: 0.5
+    z: 0.5
+  }
+}
+embedded_instances {
+  id: "D"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_d.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "E2"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_e.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 2.8
+  }
+}
+embedded_instances {
+  id: "V"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_v.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 1.9
+    y: 0.035
+  }
+}
+embedded_instances {
+  id: "E1"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_e.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 0.9
+  }
+}
+embedded_instances {
+  id: "L2"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_l.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 3.45
+    y: -0.1
+  }
+}
+embedded_instances {
+  id: "O"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_o.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 4.4
+  }
+}
+embedded_instances {
+  id: "P1"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_p.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 5.3
+    y: 0.1
+  }
+}
+embedded_instances {
+  id: "E3"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_e.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 6.25
+  }
+}
+embedded_instances {
+  id: "P2"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_r.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 7.1
+    y: 0.015
+  }
+}
+embedded_instances {
+  id: "Designer"
+  children: "D1"
+  children: "E4"
+  children: "E6"
+  children: "G1"
+  children: "I"
+  children: "N1"
+  children: "R"
+  children: "S"
+  data: ""
+  position {
+    x: 162.7
+    y: 98.3
+    z: -90.0
+  }
+  scale3 {
+    x: 0.5
+    y: 0.5
+    z: 0.5
+  }
+}
+embedded_instances {
+  id: "D1"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_d.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "E4"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_e.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 0.9
+  }
+}
+embedded_instances {
+  id: "I"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_i.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 2.5
+  }
+}
+embedded_instances {
+  id: "E6"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_e.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 5.3
+  }
+}
+embedded_instances {
+  id: "R"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_r.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 6.2
+    y: 0.015
+  }
+}
+embedded_instances {
+  id: "S"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_s.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 1.8
+  }
+}
+embedded_instances {
+  id: "G1"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_g.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 3.2
+  }
+}
+embedded_instances {
+  id: "N1"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/assets/models/alphabet/font_n.glb\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"black\\\"\\n"
+  "  material: \\\"/materials/3dfont.material\\\"\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 4.3
+  }
+}

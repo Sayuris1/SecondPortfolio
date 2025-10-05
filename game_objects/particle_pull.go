@@ -1,4 +1,8 @@
 components {
+  id: "trail_mesh"
+  component: "/hyper_trails/models/trail_mesh.mesh"
+}
+components {
   id: "trail_maker"
   component: "/hyper_trails/trail_maker.script"
   properties {
@@ -12,6 +16,11 @@ components {
     type: PROPERTY_TYPE_NUMBER
   }
   properties {
+    id: "trail_tint_color"
+    value: "0.392157, 0.098039, 0.647059, 2.0"
+    type: PROPERTY_TYPE_VECTOR4
+  }
+  properties {
     id: "segment_length_max"
     value: "0.0"
     type: PROPERTY_TYPE_NUMBER
@@ -23,7 +32,7 @@ components {
   }
   properties {
     id: "points_count"
-    value: "10.0"
+    value: "40.0"
     type: PROPERTY_TYPE_NUMBER
   }
   properties {
@@ -46,10 +55,6 @@ components {
     value: "0.0"
     type: PROPERTY_TYPE_NUMBER
   }
-}
-components {
-  id: "trail_mesh"
-  component: "/hyper_trails/models/trail_mesh.mesh"
 }
 embedded_components {
   id: "collisionobject"
@@ -82,10 +87,17 @@ embedded_components {
   id: "sprite"
   type: "sprite"
   data: "default_animation: \"anim\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
+  "material: \"/materials/sprite.material\"\n"
+  "size {\n"
+  "  x: 32.0\n"
+  "  y: 32.0\n"
+  "}\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
   "  texture: \"/builtins/graphics/particle_blob.tilesource\"\n"
   "}\n"
   ""
+  position {
+    z: 0.001
+  }
 }
